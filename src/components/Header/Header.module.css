@@ -1,0 +1,260 @@
+.header {
+  box-sizing: border-box;
+  width: 100%;
+  background: var(--background);
+  border-radius: 15px;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  height: 57px;
+  box-sizing: border-box;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  flex-shrink: 0;
+}
+
+.link {
+  font-size: 12px;
+  font-weight: 500;
+  color: #a0a0a0;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+
+.link:hover,
+.link:focus-visible {
+  color: #ffffff;
+}
+
+.active {
+  color: #ffffff;
+}
+
+/* --- User block --- */
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.avatar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 35px;
+  height: 35px;
+  flex-shrink: 0;
+}
+
+.avatarIcon {
+  position: absolute;
+  inset: 0;
+  width: 35px;
+  height: 35px;
+  border-radius: 100%;
+  fill: var(--field);
+  stroke-width: 1px;
+  stroke: rgba(249, 249, 249, 0.2);
+}
+
+.avatarLetter {
+  position: relative;
+  z-index: 1;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.menu {
+  /* display: none;    */
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.menuIcon {
+  width: 28px;
+  height: 28px;
+  fill: #ffffff;
+  /* или stroke, в зависимости от того, как нарисована иконка в спрайте */
+}
+.logoutButton {
+  padding: 10px 20px;
+  border-radius: 20px;
+  background-color: #ffffff;
+  color: #1a1a1a;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition:
+    background-color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.logoutButton:hover,
+.logoutButton:focus-visible {
+  background-color: #e0e0e0;
+}
+
+.logoutButton:active {
+  transform: scale(0.97);
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 20, 20, 0.6);
+  z-index: 100;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.drawer {
+  width: 200px;
+  height: 100%;
+  background: #262626;
+  padding: 24px 20px;
+
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.closeButton {
+  align-self: flex-end;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  margin-bottom: 40px;
+}
+
+.closeIcon {
+  width: 28px;
+  height: 28px;
+  stroke: #ffffff;
+}
+
+.drawerNavigation {
+  display: flex;
+  flex-direction: column;
+  padding: 218px 70px 394px 70px;
+  gap: 22px;
+  flex: 1;
+  align-items: center;
+}
+
+.drawerLink {
+  position: relative;
+  white-space: nowrap;
+  font-weight: 500;
+  font-size: 14px;
+
+  /* line-height: 18px; */
+  line-height: 1.28571;
+  letter-spacing: -0.02em;
+  color: #f9f9f9;
+  text-decoration: none;
+  padding-bottom: 7px;
+}
+
+.drawerActive {
+  color: #ffffff;
+}
+
+.drawerActive::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 3px;
+  background: var(--blue);
+  border-radius: 2px;
+}
+.linkWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: fit-content;
+}
+
+.drawerLogoutButton {
+  box-sizing: border-box;
+  width: 91px;
+  height: 38px;
+  align-self: center;
+  padding: 10px 20px;
+  border-radius: 30px;
+  border: 1px solid rgba(249, 249, 249, 0.2);
+  background: transparent;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: 0.02em;
+  color: #f9f9f9;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.drawerLogoutButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* --- Tablet / Desktop tweaks --- */
+
+@media (max-width: 767px) {
+  .navigation {
+    display: none;
+  }
+
+  .logoutButton {
+    display: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .header {
+    padding: 16px 24px;
+  }
+
+  .link {
+    font-size: 14px;
+  }
+
+  .avatar {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+  }
+
+  .logoutButton {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}

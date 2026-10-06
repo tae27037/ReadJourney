@@ -1,0 +1,111 @@
+/* Оверлей (затемнення та розмиття фона) */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(20, 20, 20, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+/* Карточка модалки */
+.modal {
+  position: relative;
+  box-sizing: border-box;
+  background: #1f1f1f;
+  border: 1px solid rgba(104, 104, 104, 0.2);
+  border-radius: 12px;
+  width: 335px;
+  padding: 60px 17.5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Кнопка закрытия (крестик) */
+.closeButton {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #f9f9f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: color 0.2s ease;
+}
+
+.closeButton:hover {
+  color: #30b448;
+}
+
+.closeIcon {
+  stroke: currentColor;
+  fill: none;
+}
+
+/* Эмодзи книги */
+.thumbWrapper {
+  margin-bottom: 20px;
+}
+
+.bookEmoji {
+  font-size: 50px;
+  line-height: 1;
+  display: block;
+}
+
+/* Заголовок */
+.title {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: #f9f9f9;
+  margin: 0;
+  padding-bottom: 10px;
+}
+
+/* Описание */
+.description {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.02em;
+  color: #686868;
+  margin: 0;
+  max-width: 242px;
+}
+
+/* Выделение текста в описании */
+.highlight {
+  color: #f9f9f9;
+}
+
+@media screen and (min-width: 768px) {
+  .modal {
+    box-sizing: border-box;
+    width: 342px;
+    padding: 16px 16px 50px 16px;
+  }
+
+  .bookEmoji {
+    font-size: 68px;
+    line-height: 1.02941;
+    padding-top: 34px;
+  }
+
+  .title {
+    font-size: 20px;
+    padding-bottom: 14px;
+  }
+}

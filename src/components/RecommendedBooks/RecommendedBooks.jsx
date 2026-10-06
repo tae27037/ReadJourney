@@ -1,38 +1,121 @@
 import { useEffect, useState } from "react";
-import { getRecommendedBooks } from "../../services/bookApi";
+import { getRecommendedBooks, addBookToLibrary } from "../../services/bookApi";
+import BookModal from "../BookModal/BookModal";
 import styles from "./RecommendedBooks.module.css";
 
-const RecommendedBooks = () => {
+const getBooksPerPage = () => {
+  const width = window.innerWidth;
+
+  if (width >= 1440) {
+    return 10;
+  }
+
+  if (width >= 768) {
+    return 8;
+  }
+
+  return 2;
+};
+
+const toTitleCase = (str) =>
+  str
+    ? str.toLowerCase().replace(/(^|\s)\S/g, (letter) => letter.toUpperCase())
+    : "";
+
+// 1. ПРИНИМАЕМ onBookAdded В ПРОПСЫ
+const RecommendedBooks = ({
+  filters,
+  page,
+  setPage,
+  userBooks = [],
+  onBookAdded,
+}) => {
   const [books, setBooks] = useState([]);
-  const [page, setPage] = useState(1);
+  const [perPage, setPerPage] = useState(getBooksPerPage);
   const [totalPages, setTotalPages] = useState(1);
+
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchBooks = async () => {
-      try {
-        setIsLoading(true);
-        setError(null);
+  const [selectedBook, setSelectedBook] = useState(null);
 
-        const data = await getRecommendedBooks({
-          page,
-          perPage: 2,
-        });
+  const handleBookClick = (book) => {
+    setSelectedBook(book);
+  };
 
-        setBooks(data.results);
-        setTotalPages(data.totalPages);
-      } catch (error) {
-        console.error("Failed to fetch recommended books:", error);
-        setError("Failed to load recommended books");
-      } finally {
-        setIsLoading(false);
+  const handleModalClose = () => {
+    setSelectedBook(null);
+  };
+
+  const handleAddToLibrary = async (bookId) => {
+    try {
+      await addBookToLibrary(bookId);
+      setSelectedBook(null); // Закрываем карточку с описанием
+
+      // 2. ВЫЗЫВАЕМ КОЛБЭК ДЛЯ ОТКРЫТИЯ МОДАЛКИ "Good job" 👍
+      if (typeof onBookAdded === "function") {
+        onBookAdded();
       }
+    } catch (error) {
+      console.error("Failed to add book to library:", error);
+    }
+  };
+
+  useEffect(() => {
+    const handleResize = () => {
+      const newPerPage = getBooksPerPage();
+
+      setPerPage((currentPerPage) => {
+        if (currentPerPage !== newPerPage) {
+          setPage(1);
+          return newPerPage;
+        }
+
+        return currentPerPage;
+      });
     };
 
-    fetchBooks();
-  }, [page]);
+    window.addEventListener("resize", handleResize);
 
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [setPage]);
+
+useEffect(() => {
+  const fetchBooks = async () => {
+    try {
+      setIsLoading(true);
+      setError(null);
+
+      // 1. Получаем точное актуальное значение perPage
+      const currentPerPage = getBooksPerPage();
+
+      const data = await getRecommendedBooks({
+        page,
+        perPage: currentPerPage, // <--- Отправляем 8 для планшета напрямую
+        title: filters?.title,
+        author: filters?.author,
+      });
+
+      // 2. НЕ делаем .slice(0, perPage), если сервер уже вернул нужный массив
+      setBooks(data.results || []);
+
+      const calculatedTotalPages =
+        data.totalPages ||
+        Math.ceil((data.total || data.results?.length || 0) / currentPerPage);
+
+      setTotalPages(calculatedTotalPages);
+    } catch (error) {
+      console.error("Failed to fetch recommended books:", error);
+      setError("Failed to load recommended books");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  fetchBooks();
+}, [page, perPage, filters]);
   const handlePrevPage = () => {
     setPage((prevPage) => prevPage - 1);
   };
@@ -42,11 +125,11 @@ const RecommendedBooks = () => {
   };
 
   if (isLoading) {
-    return <p>Loading...</p>;
+    return <p className={styles.loading}>Loading...</p>;
   }
 
   if (error) {
-    return <p>{error}</p>;
+    return <p className={styles.error}>{error}</p>;
   }
 
   return (
@@ -75,7 +158,7 @@ const RecommendedBooks = () => {
             className={styles.paginationButton}
             type="button"
             onClick={handleNextPage}
-            disabled={page === totalPages}
+            disabled={page === totalPages || totalPages === 0}
             aria-label="Next page"
           >
             <svg className={`${styles.arrow} ${styles.arrowRight}`}>
@@ -88,7 +171,11 @@ const RecommendedBooks = () => {
       <ul className={styles.list}>
         {books.map((book) => (
           <li className={styles.item} key={book._id}>
-            <button className={styles.bookButton} type="button">
+            <button
+              className={styles.bookButton}
+              type="button"
+              onClick={() => handleBookClick(book)}
+            >
               <img
                 className={styles.image}
                 src={book.imageUrl}
@@ -97,12 +184,21 @@ const RecommendedBooks = () => {
               />
             </button>
 
-            <h2 className={styles.bookTitle}>{book.title}</h2>
+            <h2 className={styles.bookTitle}>{toTitleCase(book.title)}</h2>
 
             <p className={styles.author}>{book.author}</p>
           </li>
         ))}
       </ul>
+
+      {selectedBook && (
+        <BookModal
+          book={selectedBook}
+          onClose={handleModalClose}
+          userBooks={userBooks}
+          onAddToLibrary={handleAddToLibrary}
+        />
+      )}
     </section>
   );
 };

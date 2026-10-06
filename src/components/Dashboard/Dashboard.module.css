@@ -1,0 +1,171 @@
+/* Мобильные устройства (по умолчанию) */
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+
+  width: 100%;
+  margin: 0 auto;
+  gap: 20px;
+  padding: 20px;
+  background: var(--background);
+  border-radius: 30px;
+}
+
+.workout {
+  box-sizing: border-box;
+  padding: 20px;
+  width: 100%;
+
+  border-radius: 12px;
+  background: var(--field);
+}
+
+/* @media screen and (min-width: 1440px) {
+  .dashboard {
+    flex-direction: column;
+    width: 353px;
+    gap: 20px;
+    padding: 40px 20px 20px 20px;
+  }
+
+  .workout {
+    width: 313px;
+  }
+} */
+
+/* Остальные стили текста и иконок без изменений */
+.title {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-align: start;
+  color: var(--white);
+  margin: 0;
+  padding-bottom: 20px;
+}
+
+.step {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 20px;
+  width: 255px;
+}
+
+.stepIconWrapper {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.stepIcon {
+  display: block;
+  width: 40px;
+  height: 40px;
+}
+
+.stepNumber {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 1;
+  transform: translate(-50%, -50%);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: var(--background);
+}
+
+.subTitle {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.02em;
+  color: var(--white);
+  margin: 0;
+}
+
+.marker {
+  color: var(--grey);
+}
+
+.libraryLink {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 18px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.02em;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  color: var(--grey);
+}
+
+@media screen and (min-width: 768px) and (max-width: 1280px) {
+  .dashboard {
+    flex-direction: row; /* Выстраиваем карточки в одну строчку */
+    align-items: flex-start;
+    gap: 40px;
+    padding: 32px;
+  }
+
+  .workout {
+    width: 313px; /* Фиксированная ширина карточки по макету Figma */
+    flex-shrink: 0; /* Запрещаем карточке сжиматься */
+    padding: 20px;
+  }
+
+  .step {
+    width: 100%; /* Расширяем шаги внутри карточки */
+  }
+
+  .title {
+    font-size: 20px;
+    padding-bottom: 40px;
+  }
+
+  .subTitle {
+    width: 197px;
+  }
+
+  .libraryLink {
+    margin-top: 26px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .dashboard {
+    box-sizing: border-box;
+    flex-direction: column;
+    width: 353px;
+    gap: 20px;
+    padding: 40px 20px 20px 20px;
+    margin: 0;
+  }
+
+  .workout {
+    box-sizing: border-box;
+    width: 313px; /* Фиксированная ширина карточки по макету Figma */
+    flex-shrink: 0; /* Запрещаем карточке сжиматься */
+    padding: 20px;
+  }
+
+  .desktopText {
+    border-radius: 12px;
+    width: 313px;
+    height: 83px;
+    background: #262626;
+
+    box-sizing: border-box;
+    padding: 15px 20px 14px 20px;
+    display: flex;
+    flex-direction: row;
+  }
+}

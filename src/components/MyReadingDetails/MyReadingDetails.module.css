@@ -1,0 +1,129 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: #f9f9f9;
+  margin: 0;
+  padding-bottom: 40px;
+}
+
+.bookCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.imageWrapper {
+  border-radius: 8px;
+  width: 137px;
+  height: 208px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  background-color: #262626;
+}
+
+.cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.bookTitle {
+  /* width: 146px; */
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: #f9f9f9;
+  margin: 0;
+  padding-bottom: 5px;
+  width: 146px;
+}
+
+.author {
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #686868;
+  margin: 0;
+  padding-bottom: 20px;
+}
+
+.actionBlock {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
+
+.stopButton {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.stopButton:hover .redCircle {
+  transform: scale(1.08);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  /* align-items: baseline; */
+  align-items: start;
+}
+
+.timeLeftText {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33333;
+  letter-spacing: -0.02em;
+  color: #686868; /* Серый цвет из макета */
+  white-space: nowrap;
+}
+
+@media screen and (min-width: 768px) {
+  .title {
+    font-size: 28px;
+    line-height: 1.14286;
+    letter-spacing: 0.02em;
+    padding-bottom: 32px;
+  }
+
+  .imageWrapper {
+    box-sizing: border-box;
+    width: 169px;
+    height: 256px;
+    margin-bottom: 25px;
+  }
+
+  .bookTitle {
+    font-size: 20px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    width: 317px;
+    text-transform: none;
+    padding-bottom: 4px;
+  }
+
+  .author {
+    font-size: 14px;
+    line-height: 1.28571;
+    padding-bottom: 16px;
+  }
+
+  .timeLeftText {
+    font-size: 14px;
+    line-height: 1.28571;
+  }
+}

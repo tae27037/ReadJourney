@@ -1,0 +1,101 @@
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #f9f9f9;
+  margin: 0 0 8px 0;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.inputWrapper {
+  display: flex;
+  align-items: center;
+  background-color: #262626;
+  border-radius: 12px;
+  padding: 12px 14px;
+  box-sizing: border-box;
+}
+
+.inputTitle {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: -0.02em;
+  color: #686868;
+  white-space: nowrap;
+  margin-right: 8px;
+}
+
+.input {
+  width: 100%;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #f9f9f9;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+}
+
+.input::placeholder {
+  color: #f9f9f9;
+}
+
+.submitBtn {
+  box-sizing: border-box;
+  padding: 10px 20px;
+  border: 1px solid rgba(249, 249, 249, 0.2);
+  border-radius: 30px;
+  background: transparent;
+  color: #f9f9f9;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.28;
+  letter-spacing: -0.02em;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: border-color 0.2s ease;
+}
+
+.submitBtn:hover {
+  border-color: #f9f9f9;
+}
+/* На планшете (768px+) */
+@media screen and (min-width: 768px) {
+  .form {
+    width: 295px; /* Фиксированная ширина блока формы по макету */
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .label {
+    width: 100%;
+    height: 50px;
+    padding: 16px 14px;
+    box-sizing: border-box;
+  }
+
+  .input {
+    font-size: 14px;
+    line-height: 1.28571;
+  }
+
+  .submitButton {
+    width: 140px;
+    height: 42px;
+    margin-top: 20px;
+  }
+}

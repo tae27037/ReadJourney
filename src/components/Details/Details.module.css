@@ -1,0 +1,84 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: #f9f9f9;
+  margin: 0;
+}
+
+.tabButtons {
+  display: flex;
+  gap: 8px;
+}
+
+.tabBtn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  color: #686868;
+  transition: color 0.2s ease;
+}
+
+.tabBtn.active {
+  color: #fbfbfb;
+}
+
+.tabBtn svg {
+  fill: currentColor;
+}
+
+.toggle {
+  display: flex; /* Выстраивает кнопки в одну горизонтальную линию */
+  flex-direction: row; /* Горизонтальная ориентация */
+  align-items: center;
+  gap: 8px; /* Расстояние между кнопками */
+}
+.toggleButton {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  outline: none;
+}
+/* Цвет иконок по умолчанию (неактивный) */
+.icon {
+  fill: transparent;
+  stroke: #686868; /* Серый цвет contour для неактивной иконки */
+  transition:
+    stroke 0.2s ease,
+    fill 0.2s ease;
+}
+
+/* Цвет иконки для активной кнопки */
+.toggleButton.active .icon,
+.toggleButton:hover .icon {
+  stroke: #f9f9f9; /* Белый цвет для активной иконки */
+}
+
+@media screen and (min-width: 768px) {
+  .title {
+    font-size: 20px;
+  }
+
+  .header {
+    margin-bottom: 16px;
+  }
+}

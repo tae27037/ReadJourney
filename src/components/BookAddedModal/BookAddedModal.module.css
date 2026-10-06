@@ -1,0 +1,117 @@
+/* Оверлей (затемнення та розмиття фону) */
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(20, 20, 20, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+/* Карточка модалки */
+.modal {
+  position: relative;
+  box-sizing: border-box;
+  background: #1f1f1f;
+  border: 1px solid rgba(104, 104, 104, 0.2);
+  border-radius: 12px;
+  width: 335px;
+  padding: 60px 46px 60px 47px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* Хрестик закриття */
+.closeButton {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #f9f9f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: color 0.2s ease;
+}
+
+.closeButton:hover {
+  color: #30b448;
+}
+
+.closeIcon {
+  stroke: currentColor;
+  fill: none;
+}
+
+/* Емодзі 👍 */
+.thumbWrapper {
+  margin-bottom: 20px;
+}
+
+.emoji {
+  font-size: 50px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  display: block;
+}
+
+/* Заголовок */
+.title {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: #f9f9f9;
+  margin: 0;
+  padding-bottom: 10px;
+}
+
+/* Опис */
+.description {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: #686868;
+  margin: 0;
+}
+
+/* Біле виділення в описі */
+.highlight {
+  color: #f9f9f9;
+}
+
+@media screen and (min-width: 768px) {
+  .modal {
+    box-sizing: border-box;
+    width: 342px;
+    padding: 16px 16px 50px 16px;
+  }
+
+  .emoji {
+    font-size: 68px;
+    line-height: 1.02941;
+    padding-top: 32px;
+  }
+
+  .title {
+    font-size: 20px;
+    padding-bottom: 14px;
+  }
+
+  .description {
+    max-width: 242px;
+  }
+}

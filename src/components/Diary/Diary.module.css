@@ -1,0 +1,227 @@
+/* Diary.module.css */
+
+.list {
+  box-sizing: border-box;
+  list-style: none;
+  padding: 17px;
+  /* padding-right: 7px; */
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 295px;
+  /* height: 211px; */
+  overflow-y: auto;
+  border-radius: 12px;
+  background: #262626;
+  position: relative; /* Обязательно для точного позиционирования линии */
+}
+
+/* Единая вертикальная линия хронологии */
+.list::before {
+  content: "";
+  position: absolute;
+  /* padding (17px) + отступ к центру иконки (8px) - половина ширины линии (1px) = 24px */
+  left: 24px;
+  top: 25px; /* Начинается ровно в центре первого квадрата */
+  bottom: 0; /* Заканчивается ровно в центре последнего квадрата */
+  width: 2px;
+  background-color: #1f1f1f;
+  z-index: 1;
+}
+
+/* Каждый элемент списка */
+.item {
+  position: relative;
+  padding-left: 28px; /* Отступ под иконку и линию */
+}
+
+.item::before {
+  display: none;
+}
+
+/* Иконка-квадрат (позиционируется поверх линии) */
+.squareIcon {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+  min-height: 16px;
+  box-sizing: border-box;
+  z-index: 2; /* Закрывает линию собой */
+}
+
+/* Шапка карточки */
+.itemHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.dateBlock {
+  display: flex;
+  align-items: center;
+}
+
+.date {
+  font-weight: 700;
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: 0.02em;
+  color: #f9f9f9;
+}
+
+.pagesCount {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+  letter-spacing: -0.02em;
+  color: #686868;
+  width: 70px; /* Фиксированная ширина, как у блока скорости */
+  text-align: center; /* Центрирует текст точно над графиком */
+  margin-right: 16px; /* Сдвиг с учетом иконки удаления справа */
+}
+
+/* Тело карточки */
+.itemBody {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.metrics {
+  display: flex;
+  flex-direction: column;
+}
+
+.percentage {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.28;
+  letter-spacing: -0.02em;
+  color: #f9f9f9;
+  padding-bottom: 4px;
+}
+
+.time {
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #686868;
+}
+
+/* Правая секция (скорость и кнопка удаления) */
+.rightSection {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.speedColumn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.speedText {
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-align: right;
+  color: #686868;
+  margin: 0;
+  padding-top: 4px;
+  white-space: nowrap;
+  align-items: center;
+}
+
+.speedLabel,
+.speedValue {
+  margin: 0;
+}
+
+/* Кнопка удаления */
+.deleteButton {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #686868;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+  padding: 0;
+}
+
+.deleteButton:hover {
+  color: #e85050;
+}
+
+.trashIcon {
+  fill: currentColor;
+}
+
+.emptyText {
+  color: #686868;
+  font-size: 14px;
+  text-align: center;
+  padding: 20px 0;
+}
+
+/* Старые (предыдущие) сеансы — СЕРЫЙ */
+
+@media screen and (min-width: 768px) {
+  .list {
+    box-sizing: border-box;
+    padding: 16px 16px 31px 16px;
+    gap: 14px;
+    width: 321px;
+    height: 252px;
+  }
+
+  .itemHeader {
+    margin-bottom: 16px;
+  }
+
+  .date {
+    font-size: 16px;
+    line-height: 1.125;
+  }
+
+  .percentage {
+    font-size: 20px;
+    line-height: 1;
+
+    padding-bottom: 8px;
+  }
+
+  .time {
+    font-size: 12px;
+    line-height: 1.16667;
+  }
+
+  .pagesCount {
+    font-size: 14px;
+    line-height: 1.28571;
+  }
+
+  .speedText {
+    font-size: 12px;
+    line-height: 1.16667;
+  }
+  .speedGraphIcon {
+    width: 60px;
+    height: 25px;
+  }
+  .squareIcon {
+    width: 20px;
+    height: 20px;
+  }
+}

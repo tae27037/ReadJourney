@@ -1,0 +1,180 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 14px;
+  background: var(--field, #262626);
+  border-radius: 12px;
+  min-height: 44px;
+}
+
+.labelText {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33333;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: #686868;
+}
+
+.input {
+  width: 100%;
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33333;
+  letter-spacing: -0.02em;
+  color: #f9f9f9;
+}
+
+.input:-webkit-autofill,
+.input:-webkit-autofill:hover,
+.input:-webkit-autofill:focus,
+.input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 1000px var(--field, #262626) inset !important;
+  -webkit-text-fill-color: #ffffff !important;
+  caret-color: #ffffff;
+  transition: background-color 5000s ease-in-out 0s;
+}
+
+.input::placeholder {
+  color: #686868;
+}
+
+.eyeButton {
+  flex-shrink: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.eyeIcon {
+  width: 18px;
+  height: 18px;
+  fill: none;
+  stroke: #a0a0a0;
+}
+
+.error {
+  margin: -6px 0 0 20px;
+  font-size: 12px;
+  color: var(--red);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 64px;
+}
+
+.submitButton {
+  width: 140px;
+  height: 42px;
+  padding: 12px 29px;
+  border: none;
+  border-radius: 30px;
+  background: var(--white);
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: 0.02em;
+  color: #1f1f1f;
+}
+
+.submitButton:hover {
+  background: #e0e0e0;
+}
+
+.submitButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.link {
+  font-weight: 500;
+  font-size: 12px;
+
+  /* line-height: 14px; */
+  line-height: 1.16667;
+  letter-spacing: -0.02em;
+  text-decoration: underline;
+  text-decoration-skip-ink: none;
+  color: #686868;
+}
+
+.link:hover {
+  color: #ffffff;
+}
+
+@media screen and (min-width: 768px) {
+  .submitButton {
+    box-sizing: border-box;
+    width: 166px;
+    height: 52px;
+    padding: 16px;
+    font-size: 20px;
+    line-height: 1;
+  }
+
+  .link {
+    font-size: 14px;
+    line-height: 1.28571;
+  }
+
+  .input {
+    box-sizing: border-box;
+    border-radius: 12px;
+    padding: 16px 14px;
+
+    font-size: 14px;
+    line-height: 1.28571;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 40px;
+  }
+
+  .labelText {
+    font-size: 14px;
+    line-height: 1.28571;
+  }
+
+  .label {
+    box-sizing: border-box;
+    padding: 14px 16px;
+    min-height: 50px;
+    width: 472px;
+    height: 50px;
+  }
+
+  .eyeIcon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .actions {
+    gap: 20px;
+    margin-top: 126px;
+  }
+}

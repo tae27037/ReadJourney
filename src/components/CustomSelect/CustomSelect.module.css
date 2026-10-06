@@ -1,0 +1,99 @@
+.selectContainer {
+  position: relative;
+  display: inline-block;
+  justify-content: space-between;
+  /* width: 153px; */
+}
+
+/* Кнопка селекта */
+.selectButton {
+  box-sizing: border-box;
+  width: 120px;
+  height: 40px;
+  padding: 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border: 1px solid #3e3e3e;
+  border-radius: 12px;
+  background-color: transparent;
+
+  font-weight: 500;
+  font-size: 12px;
+  /* line-height: 18px; */
+  line-height: 1.28571;
+  letter-spacing: -0.02em;
+  text-align: center;
+  color: #f9f9f9;
+
+  cursor: pointer;
+  outline: none;
+}
+
+/* Стрелочка с поворотом */
+.icon {
+  fill: none;
+  stroke: #f9f9f9;
+  transition: transform 0.2s ease;
+}
+
+.iconOpen {
+  transform: rotate(180deg); /* Поворачивается вверх при открытии */
+}
+
+/* Выпадающее меню точно как на макете */
+.dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  /* width: 100%; */
+
+  background: #262626;
+  border-radius: 12px;
+  padding: 14px;
+  margin: 0;
+  list-style: none;
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  width: 120px;
+  height: 121px;
+  gap: 7px;
+  z-index: 10;
+}
+
+/* Опции выпадающего списка */
+.optionItem {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.28571;
+  letter-spacing: -0.02em;
+  color: #686868;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.optionItem:hover {
+  color: #f9f9f9;
+}
+
+/* Выбранная опция яркого белого цвета */
+.selected {
+  color: #f9f9f9;
+}
+
+@media screen and (min-width: 768px) {
+  .selectButton {
+    width: 153px;
+    height: 46px;
+    font-size: 14px;
+  }
+
+  .dropdown {
+    width: 153px;
+    height: 121px;
+  }
+}

@@ -1,0 +1,66 @@
+@import "modern-normalize";
+@font-face {
+  font-family: "Gilroy";
+  src: url("/src/assets/fonts/Gilroy-Light.otf") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("/src/assets/fonts/Gilroy-ExtraBold.otf") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "SF Pro Text";
+  src: url("/src/assets/fonts/SFProText-Semibold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --font-family: "Gilroy", sans-serif;
+  --second-family: "SF Pro Text", sans-serif;
+
+  --white: #f9f9f9;
+  --grey: #686868;
+  --dark-grey: #e3e3e3;
+  --field: #262626;
+  --background: #1f1f1f;
+  --black: #141414;
+  --blue: #4f92f7;
+  --green: #30b94d;
+  --red: #e90516;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-width: 320px;
+  overflow-x: hidden;
+  background-color: #141414;
+  font-family: var(--font-family);
+}
+
+#root {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 20px 20px 20px 20px;
+  box-sizing: border-box;
+}
+
+@media screen and (min-width: 768px) {
+  #root {
+    padding: 32px;
+    gap: 16px;
+  }
+}

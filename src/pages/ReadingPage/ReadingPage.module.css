@@ -1,0 +1,30 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-start;
+}
+
+.detailsContainer {
+  box-sizing: border-box;
+  flex-grow: 1; /* Занимает всё оставшееся место справа */
+  background-color: #1f1f1f;
+  border-radius: 30px;
+  padding: 40px 20px;
+  width: 100%;
+  height: 100%; /* Примерная высота под макет */
+}
+
+.loading,
+.error {
+  color: #fbfbfb;
+  text-align: center;
+  padding: 100px 0;
+  font-size: 18px;
+}
+
+@media screen and (min-width: 768px) {
+  .detailsContainer {
+    padding: 40px;
+  }
+}
