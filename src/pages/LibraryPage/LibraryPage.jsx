@@ -1,5 +1,3 @@
-// src/pages/LibraryPage/LibraryPage.jsx
-
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -27,14 +25,11 @@ const LibraryPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // Управление карточной модалкой (BookModal)
   const [selectedBook, setSelectedBook] = useState(null);
   const [isOwnBookModal, setIsOwnBookModal] = useState(false);
 
-  // Управление модалкой «Good job»
   const [isBookAddedModalOpen, setIsBookAddedModalOpen] = useState(false);
 
-  // 1. Эффект для загрузки личных книг при монтировании
   useEffect(() => {
     let isMounted = true;
 
@@ -59,7 +54,6 @@ const LibraryPage = () => {
     };
   }, []);
 
-  // 2. Эффект для подгрузки рекомендованных книг
   useEffect(() => {
     let isMounted = true;
 
@@ -81,7 +75,6 @@ const LibraryPage = () => {
     };
   }, []);
 
-  // Ручной перезапрос книг для хэндлеров (добавление/удаление)
   const refreshBooks = async () => {
     try {
       setIsLoading(true);
@@ -96,9 +89,7 @@ const LibraryPage = () => {
     }
   };
 
-  // Добавление книги через форму
   const handleAddBook = async (formData) => {
-    // Проверяем, есть ли книга уже в библиотеке
     const isAlreadyInLibrary = books.some(
       (b) =>
         b.title?.trim().toLowerCase() ===
@@ -107,7 +98,6 @@ const LibraryPage = () => {
           formData.author?.trim().toLowerCase(),
     );
 
-    // Если книга уже есть — не делаем запрос на сервер, но всё равно открываем BookAddedModal!
     if (isAlreadyInLibrary) {
       setIsBookAddedModalOpen(true);
       return;
@@ -118,7 +108,6 @@ const LibraryPage = () => {
       await refreshBooks();
       setIsBookAddedModalOpen(true);
     } catch (err) {
-      // Если бэкенд всё равно вернул 409 (уже есть), просто показываем модалку успеха
       if (err.response?.status === 409) {
         setIsBookAddedModalOpen(true);
       } else {
@@ -129,7 +118,6 @@ const LibraryPage = () => {
     }
   };
 
-  // Добавление рекомендованной книги по ID через модалку
   const handleAddRecommendedToLibrary = async (bookId) => {
     const isAlreadyInLibrary = books.some(
       (b) =>
@@ -141,7 +129,6 @@ const LibraryPage = () => {
             selectedBook.author?.trim().toLowerCase()),
     );
 
-    // Если уже добавлена — закрываем карточку детализации и всё равно открываем BookAddedModal!
     if (isAlreadyInLibrary) {
       setSelectedBook(null);
       setIsBookAddedModalOpen(true);
@@ -164,7 +151,6 @@ const LibraryPage = () => {
     }
   };
 
-  // Удаление книги из библиотеки
   const handleDeleteBook = async (bookId) => {
     try {
       await deleteOwnBook(bookId);
@@ -175,13 +161,11 @@ const LibraryPage = () => {
     }
   };
 
-  // Клик по рекомендованной книге
   const handleRecommendedClick = (book) => {
     setSelectedBook(book);
     setIsOwnBookModal(false);
   };
 
-  // Клик по своей книге из библиотеки
   const handleOwnBookClick = (book) => {
     setSelectedBook(book);
     setIsOwnBookModal(true);
@@ -194,8 +178,7 @@ const LibraryPage = () => {
 
   return (
     <div className={styles.page}>
-      {/* Левая панель - Dashboard */}
-      <Dashboard showWorkout={false}>
+      <Dashboard showWorkout={false} showQuote={false}>
         <AddBookForm onAddBook={handleAddBook} />
 
         <div className={styles.recommendedBlock}>
@@ -228,7 +211,6 @@ const LibraryPage = () => {
         </div>
       </Dashboard>
 
-      {/* Правая панель - MyLibraryBooks */}
       <div className={styles.libraryContainer}>
         <MyLibraryBooks
           books={filteredBooks}
@@ -241,7 +223,6 @@ const LibraryPage = () => {
         />
       </div>
 
-      {/* Модальное окно деталей книги */}
       {selectedBook && (
         <BookModal
           book={selectedBook}
@@ -252,7 +233,6 @@ const LibraryPage = () => {
         />
       )}
 
-      {/* Модальное окно «Good job» 👍 */}
       <BookAddedModal
         isOpen={isBookAddedModalOpen}
         onClose={() => setIsBookAddedModalOpen(false)}

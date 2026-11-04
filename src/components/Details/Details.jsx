@@ -42,6 +42,14 @@ const Details = ({ book, onRefreshBook, isReading }) => {
         </div>
       </div>
 
+      {view === "statistics" && (
+        <p className={styles.desktopQuoteText}>
+          Each page, each chapter is a new round of knowledge, a new step
+          towards understanding. By rewriting statistics, we create our own
+          reading history.
+        </p>
+      )}
+
       {view === "diary" ? (
         <Diary
           book={book}

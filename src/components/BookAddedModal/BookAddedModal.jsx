@@ -1,5 +1,3 @@
-// src/components/BookAddedModal/BookAddedModal.jsx
-
 import { useEffect } from "react";
 import styles from "./BookAddedModal.module.css";
 
@@ -38,7 +36,6 @@ const BookAddedModal = ({ isOpen, onClose }) => {
           </svg>
         </button>
 
-        {/* Смайлик палець вгору */}
         <div className={styles.thumbWrapper}>
           <span className={styles.emoji} role="img" aria-label="Thumbs up">
             👍

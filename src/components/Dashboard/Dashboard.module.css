@@ -1,12 +1,9 @@
-/* Мобильные устройства (по умолчанию) */
 .dashboard {
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
-
   width: 100%;
   margin: 0 auto;
-  gap: 20px;
   padding: 20px;
   background: var(--background);
   border-radius: 30px;
@@ -16,25 +13,11 @@
   box-sizing: border-box;
   padding: 20px;
   width: 100%;
-
   border-radius: 12px;
   background: var(--field);
+  margin-top: 20px;
 }
 
-/* @media screen and (min-width: 1440px) {
-  .dashboard {
-    flex-direction: column;
-    width: 353px;
-    gap: 20px;
-    padding: 40px 20px 20px 20px;
-  }
-
-  .workout {
-    width: 313px;
-  }
-} */
-
-/* Остальные стили текста и иконок без изменений */
 .title {
   font-weight: 700;
   font-size: 18px;
@@ -108,22 +91,31 @@
   color: var(--grey);
 }
 
-@media screen and (min-width: 768px) and (max-width: 1280px) {
+.citate {
+  display: none;
+}
+
+.bookEmoji {
+  display: none;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1279px) {
   .dashboard {
-    flex-direction: row; /* Выстраиваем карточки в одну строчку */
+    flex-direction: row;
     align-items: flex-start;
     gap: 40px;
+    justify-content: space-between;
     padding: 32px;
   }
 
   .workout {
-    width: 313px; /* Фиксированная ширина карточки по макету Figma */
-    flex-shrink: 0; /* Запрещаем карточке сжиматься */
+    width: 313px;
+    flex-shrink: 0;
     padding: 20px;
   }
 
   .step {
-    width: 100%; /* Расширяем шаги внутри карточки */
+    width: 100%;
   }
 
   .title {
@@ -138,34 +130,67 @@
   .libraryLink {
     margin-top: 26px;
   }
+  .desktopText {
+    display: none;
+  }
 }
 
 @media screen and (min-width: 1280px) {
   .dashboard {
     box-sizing: border-box;
+
     flex-direction: column;
     width: 353px;
-    gap: 20px;
+    height: 651px;
     padding: 40px 20px 20px 20px;
     margin: 0;
   }
 
   .workout {
     box-sizing: border-box;
-    width: 313px; /* Фиксированная ширина карточки по макету Figma */
-    flex-shrink: 0; /* Запрещаем карточке сжиматься */
-    padding: 20px;
+    width: 313px;
+    flex-shrink: 0;
+    margin-top: 20px;
   }
 
   .desktopText {
+    display: flex;
     border-radius: 12px;
     width: 313px;
-    height: 83px;
-    background: #262626;
+    height: 85px;
+    background: var(--field);
 
     box-sizing: border-box;
     padding: 15px 20px 14px 20px;
-    display: flex;
     flex-direction: row;
+    align-items: center;
+    gap: 14px;
+    margin-top: 20px;
+  }
+
+  .citate {
+    display: block;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.28571;
+    letter-spacing: -0.02em;
+    color: var(--grey);
+    margin: 0;
+    width: 219px;
+  }
+
+  .bookEmoji {
+    display: block;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+
+  .libraryLink {
+    margin-top: 26px;
+  }
+  .title {
+    padding-bottom: 40px;
   }
 }

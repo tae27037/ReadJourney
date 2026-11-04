@@ -1,8 +1,8 @@
 import styles from "./Dashboard.module.css";
 
-const Dashboard = ({ children, showWorkout = true }) => {
+const Dashboard = ({ children, showWorkout = true, showQuote = false }) => {
   return (
-    <section className={styles.dashboard}>
+    <aside className={styles.dashboard}>
       {children}
 
       {showWorkout && (
@@ -18,7 +18,7 @@ const Dashboard = ({ children, showWorkout = true }) => {
                   height="44"
                   aria-hidden="true"
                 >
-                  <use href="/public/sprite.svg#icon-ellipse" />
+                  <use href="/sprite.svg#icon-ellipse" />
                 </svg>
                 <span className={styles.stepNumber}>1</span>
               </div>
@@ -39,7 +39,7 @@ const Dashboard = ({ children, showWorkout = true }) => {
                   height="44"
                   aria-hidden="true"
                 >
-                  <use href="/public/sprite.svg#icon-ellipse" />
+                  <use href="/sprite.svg#icon-ellipse" />
                 </svg>
                 <span className={styles.stepNumber}>2</span>
               </div>
@@ -60,23 +60,25 @@ const Dashboard = ({ children, showWorkout = true }) => {
                 height="24"
                 aria-hidden="true"
               >
-                <use href="/public/sprite.svg#icon-log-in" />
+                <use href="/sprite.svg#icon-log-in" />
               </svg>
             </a>
           </div>
         </div>
       )}
-      <div className={styles.desktopText}>
-        <span className={styles.bookEmoji} role="img" aria-label="Books">
-          📚
-        </span>
 
-        <p className={styles.citate}>
-          "Books are windows to the world, and reading is a jorney into the
-          unknown."
-        </p>
-      </div>
-    </section>
+      {showQuote && (
+        <div className={styles.desktopText}>
+          <span className={styles.bookEmoji} role="img" aria-label="Books">
+            📚
+          </span>
+          <p className={styles.citate}>
+            "Books are windows to the world, and reading is a journey into the
+            unknown."
+          </p>
+        </div>
+      )}
+    </aside>
   );
 };
 

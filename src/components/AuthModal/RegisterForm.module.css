@@ -1,20 +1,38 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: 8px;
   margin-top: 20px;
 }
 
-.label {
+/* 🌟 Обёртка каждого инпута для фиксации ошибки под полем */
+.inputGroup {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 18px; /* Зарезервированный зазор под текст ошибки */
+}
+
+.label {
   display: flex;
   align-items: center;
   gap: 10px;
-
   padding: 14px;
-  background: var(--field, #262626);
+  background: var(--field);
   border-radius: 12px;
   min-height: 44px;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+/* 🟢 Рамки статусов валидации по UI Kit */
+.label.valid {
+  border-color: #30b94d;
+}
+
+.label.invalid {
+  border-color: #e85050;
 }
 
 .labelText {
@@ -23,7 +41,7 @@
   line-height: 1.33333;
   letter-spacing: -0.02em;
   text-align: center;
-  color: #686868;
+  color: var(--grey);
 }
 
 .input {
@@ -38,21 +56,21 @@
   font-size: 12px;
   line-height: 1.33333;
   letter-spacing: -0.02em;
-  color: #f9f9f9;
+  color: var(--white);
 }
 
 .input:-webkit-autofill,
 .input:-webkit-autofill:hover,
 .input:-webkit-autofill:focus,
 .input:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 1000px var(--field, #262626) inset !important;
-  -webkit-text-fill-color: #ffffff !important;
-  caret-color: #ffffff;
+  -webkit-box-shadow: 0 0 0 1000px var(--field) inset !important;
+  -webkit-text-fill-color: var(--white) !important;
+  caret-color: var(--white);
   transition: background-color 5000s ease-in-out 0s;
 }
 
 .input::placeholder {
-  color: #686868;
+  color: var(--grey);
 }
 
 .eyeButton {
@@ -69,38 +87,75 @@
   width: 18px;
   height: 18px;
   fill: none;
-  stroke: #a0a0a0;
+  stroke: var(--grey);
 }
 
+.validIcon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  fill: transparent;
+  stroke: #30b94d;
+}
+
+/* 🌟 АБСОЛЮТНОЕ ПОЗИЦИОНИРОВАНИЕ ОШИБОК (не влияют на высоту и кнопку) */
 .error {
-  margin: -6px 0 0 20px;
-  font-size: 12px;
-  color: var(--red);
+  position: absolute;
+  left: 14px;
+  top: 46px; /* Вывод строго под полем */
+  margin: 0;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #e85050;
+  white-space: nowrap;
 }
 
+.successMessage {
+  position: absolute;
+  left: 14px;
+  top: 46px;
+  margin: 0;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #30b94d;
+  white-space: nowrap;
+}
+
+/* Блок действий с кнопкой */
 .actions {
   display: flex;
   align-items: center;
   gap: 14px;
-  margin-top: 12px;
+  margin-top: 10px;
 }
 
 .submitButton {
   width: 140px;
   height: 42px;
   padding: 12px 29px;
-  border: none;
+  border: 1px solid rgba(249, 249, 249, 0.2);
   border-radius: 30px;
   background: var(--white);
   font-weight: 700;
   font-size: 14px;
   line-height: 1.28571;
   letter-spacing: 0.02em;
-  color: #1f1f1f;
+  color: var(--background);
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
 }
 
-.submitButton:hover {
-  background: #e0e0e0;
+.submitButton:hover,
+.submitButton:focus-visible {
+  background: var(--black);
+  color: var(--white);
 }
 
 .submitButton:disabled {
@@ -111,20 +166,60 @@
 .link {
   font-weight: 500;
   font-size: 12px;
-
-  /* line-height: 14px; */
   line-height: 1.16667;
   letter-spacing: -0.02em;
   text-decoration: underline;
   text-decoration-skip-ink: none;
-  color: #686868;
+  color: var(--grey);
+  transition: color 0.2s ease;
 }
 
-.link:hover {
-  color: #ffffff;
+.link:hover,
+.link:focus-visible {
+  color: var(--white);
 }
 
+/* 💻 Планшет и Десктоп */
 @media screen and (min-width: 768px) {
+  .form {
+    margin-top: 40px;
+  }
+
+  .inputGroup {
+    margin-bottom: 22px;
+  }
+
+  .label {
+    box-sizing: border-box;
+    padding: 14px 16px;
+    min-height: 50px;
+    height: 50px;
+    width: 472px;
+  }
+
+  .labelText,
+  .input {
+    font-size: 14px;
+    line-height: 1.28571;
+  }
+
+  .eyeIcon,
+  .validIcon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .error,
+  .successMessage {
+    top: 52px;
+    font-size: 12px;
+  }
+
+  .actions {
+    gap: 20px;
+    margin-top: 20px;
+  }
+
   .submitButton {
     box-sizing: border-box;
     width: 225px;
@@ -138,43 +233,10 @@
     font-size: 14px;
     line-height: 1.28571;
   }
+}
 
-  .input {
-    box-sizing: border-box;
-    border-radius: 12px;
-    padding: 16px 14px;
-
-    font-size: 14px;
-    line-height: 1.28571;
-  }
-
-  .form {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-    margin-top: 40px;
-  }
-
-  .labelText {
-    font-size: 14px;
-    line-height: 1.28571;
-  }
-
-  .label {
-    box-sizing: border-box;
-    padding: 14px 16px;
-    min-height: 50px;
-    width: 472px;
-    height: 50px;
-  }
-
-  .eyeIcon {
-    width: 20px;
-    height: 20px;
-  }
-
+@media screen and (min-width: 1280px) {
   .actions {
     gap: 20px;
-    margin-top: 68px;
   }
 }

@@ -1,7 +1,7 @@
 .form {
   display: flex;
   flex-direction: column;
-  width: 295px;
+  min-width: 295px;
 }
 
 .f {
@@ -57,9 +57,7 @@
   font-size: 12px;
   line-height: 1.33333;
   letter-spacing: -0.02em;
-  /* text-align: center; */
-  /* justify-content: center; */
-  color: #f9f9f9;
+  color: var(--white);
 }
 
 .button,
@@ -83,6 +81,11 @@
   color: var(--white);
   background-color: var(--background);
   margin-top: 8px;
+}
+.button:hover,
+.addButton:hover {
+  background-color: var(--white);
+  color: var(--black);
 }
 
 @media screen and (min-width: 768px) {

@@ -1,5 +1,3 @@
-// src/components/Diary/Diary.jsx
-
 import toast from "react-hot-toast";
 import { deleteReadingSession } from "../../services/bookApi";
 import styles from "./Diary.module.css";
@@ -7,13 +5,11 @@ import styles from "./Diary.module.css";
 const Diary = ({ book, onSessionDeleted, isReading }) => {
   const progressList = book?.progress || [];
 
-  // Фильтруем: оставляем ТОЛЬКО завершенные сессии
   const completedProgress = progressList.filter(
     (item) =>
       item.finishPage || item.finishReading || item.status === "inactive",
   );
 
-  // Расчет времени чтения в минутах из ISO-дат
   const calculateMinutes = (start, finish) => {
     if (!start || !finish) return 1;
     const startTime = new Date(start).getTime();
@@ -22,7 +18,6 @@ const Diary = ({ book, onSessionDeleted, isReading }) => {
     return Math.max(1, Math.round(diffMs / (1000 * 60)));
   };
 
-  // Удаление сессии
   const handleDelete = async (item) => {
     if (isReading) {
       toast.error(
@@ -58,7 +53,6 @@ const Diary = ({ book, onSessionDeleted, isReading }) => {
     );
   }
 
-  // Сортируем завершенные сессии (от свежих к старым)
   const sortedProgress = [...completedProgress].reverse();
 
   return (
@@ -67,17 +61,14 @@ const Diary = ({ book, onSessionDeleted, isReading }) => {
         {sortedProgress.map((item, index) => {
           const isLatest = index === 0;
 
-          // Подсчет прочитанных страниц за сессию
           const pagesRead = item.finishPage
             ? item.finishPage - item.startPage + 1
             : 0;
 
-          // Процент от общего объема книги
           const percentage = book?.totalPages
             ? ((item.finishPage / book.totalPages) * 100).toFixed(1)
             : "0.0";
 
-          // Длительность в минутах
           const durationMinutes =
             item.minutes ||
             calculateMinutes(item.startReading, item.finishReading);
@@ -89,13 +80,7 @@ const Diary = ({ book, onSessionDeleted, isReading }) => {
                 isLatest ? styles.latestItem : styles.oldItem
               }`}
             >
-              {/* Иконка квадратика с позиционированием поверх линии */}
-              <svg
-                className={styles.squareIcon}
-                // width="16"
-                // height="16"
-                viewBox="0 0 16 16"
-              >
+              <svg className={styles.squareIcon} viewBox="0 0 16 16">
                 <use
                   href={`/sprite.svg#${
                     isLatest ? "icon-lastVersion" : "icon-previosVersion"
@@ -116,7 +101,6 @@ const Diary = ({ book, onSessionDeleted, isReading }) => {
                   </span>
                 </div>
 
-                {/* Количество страниц напротив даты */}
                 <span className={styles.pagesCount}>{pagesRead} pages</span>
               </div>
 
@@ -134,11 +118,7 @@ const Diary = ({ book, onSessionDeleted, isReading }) => {
 
                 <div className={styles.rightSection}>
                   <div className={styles.speedColumn}>
-                    <svg
-                      className={styles.speedGraphIcon}
-                      // width="43"
-                      // height="17"
-                    >
+                    <svg className={styles.speedGraphIcon}>
                       <use href="/sprite.svg#icon-speed" />
                     </svg>
 

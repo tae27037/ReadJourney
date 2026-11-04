@@ -9,48 +9,82 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px;
-  height: 57px;
+  padding: 16px 20px;
+  height: 74px;
   box-sizing: border-box;
 }
 
 .logo {
   display: flex;
   align-items: center;
+  gap: 4px;
+  text-decoration: none;
   flex-shrink: 0;
+}
+
+.logoIcon {
+  width: 42px;
+  height: 17px;
+}
+
+.logoText {
+  display: none;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  color: var(--white);
 }
 
 .navigation {
-  display: flex;
+  display: none;
   align-items: center;
   gap: 32px;
-  flex-shrink: 0;
 }
 
 .link {
-  font-size: 12px;
+  position: relative;
+  font-size: 16px;
   font-weight: 500;
-  color: #a0a0a0;
-  white-space: nowrap;
+  line-height: 1.125;
+  letter-spacing: -0.02em;
+  color: var(--grey);
+  text-decoration: none;
+  padding-bottom: 8px;
   transition: color 0.2s ease;
 }
 
-.link:hover,
-.link:focus-visible {
-  color: #ffffff;
+.link:hover {
+  color: var(--white);
 }
 
 .active {
-  color: #ffffff;
+  color: var(--white);
 }
 
-/* --- User block --- */
+.active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--blue);
+  border-radius: 8px;
+}
 
 .user {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 16px;
   flex-shrink: 0;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .avatar {
@@ -58,33 +92,36 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 35px;
-  height: 35px;
+  width: 40px;
+  height: 40px;
   flex-shrink: 0;
+  border-radius: 50%;
+  background-color: var(--field);
+  border: 1px solid rgba(249, 249, 249, 0.2);
 }
 
 .avatarIcon {
-  position: absolute;
-  inset: 0;
-  width: 35px;
-  height: 35px;
-  border-radius: 100%;
-  fill: var(--field);
-  stroke-width: 1px;
-  stroke: rgba(249, 249, 249, 0.2);
+  display: none;
 }
 
 .avatarLetter {
-  position: relative;
-  z-index: 1;
-  color: #ffffff;
-  font-size: 14px;
-  font-weight: 600;
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 700;
   line-height: 1;
 }
 
+.userName {
+  display: none;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.125;
+  letter-spacing: -0.02em;
+  color: var(--white);
+}
+
 .menu {
-  /* display: none;    */
+  display: flex;
   align-items: center;
   justify-content: center;
   width: 28px;
@@ -99,29 +136,28 @@
 .menuIcon {
   width: 28px;
   height: 28px;
-  fill: #ffffff;
-  /* или stroke, в зависимости от того, как нарисована иконка в спрайте */
+  stroke: var(--white);
 }
+
 .logoutButton {
-  padding: 10px 20px;
-  border-radius: 20px;
-  background-color: #ffffff;
-  color: #1a1a1a;
-  font-size: 12px;
-  font-weight: 600;
+  display: none;
+  padding: 12px 28px;
+  border-radius: 30px;
+  border: 1px solid rgba(249, 249, 249, 0.2);
+  background: transparent;
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.125;
+  letter-spacing: -0.02em;
+  cursor: pointer;
   white-space: nowrap;
-  transition:
-    background-color 0.2s ease,
-    transform 0.15s ease;
+  transition: all 0.2s ease;
 }
 
-.logoutButton:hover,
-.logoutButton:focus-visible {
-  background-color: #e0e0e0;
-}
-
-.logoutButton:active {
-  transform: scale(0.97);
+.logoutButton:hover {
+  background-color: var(--white);
+  color: var(--background);
 }
 
 .overlay {
@@ -136,9 +172,8 @@
 .drawer {
   width: 200px;
   height: 100%;
-  background: #262626;
+  background: var(--field);
   padding: 24px 20px;
-
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -156,13 +191,13 @@
 .closeIcon {
   width: 28px;
   height: 28px;
-  stroke: #ffffff;
+  stroke: var(--white);
 }
 
 .drawerNavigation {
   display: flex;
   flex-direction: column;
-  padding: 218px 70px 394px 70px;
+  padding: 100px 0;
   gap: 22px;
   flex: 1;
   align-items: center;
@@ -173,17 +208,15 @@
   white-space: nowrap;
   font-weight: 500;
   font-size: 14px;
-
-  /* line-height: 18px; */
   line-height: 1.28571;
   letter-spacing: -0.02em;
-  color: #f9f9f9;
+  color: var(--grey);
   text-decoration: none;
   padding-bottom: 7px;
 }
 
 .drawerActive {
-  color: #ffffff;
+  color: var(--white);
 }
 
 .drawerActive::after {
@@ -195,13 +228,6 @@
   height: 3px;
   background: var(--blue);
   border-radius: 2px;
-}
-.linkWrapper {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  width: fit-content;
 }
 
 .drawerLogoutButton {
@@ -216,45 +242,50 @@
   font-weight: 700;
   font-size: 14px;
   line-height: 1.28571;
-  letter-spacing: 0.02em;
-  color: #f9f9f9;
+  color: var(--white);
   cursor: pointer;
-  white-space: nowrap;
 }
 
-.drawerLogoutButton:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+  .logoText {
+    display: none;
+  }
 
-/* --- Tablet / Desktop tweaks --- */
-
-@media (max-width: 767px) {
   .navigation {
+    display: flex;
+  }
+
+  .userName {
+    display: none;
+  }
+
+  .menu {
     display: none;
   }
 
   .logoutButton {
-    display: none;
+    display: inline-block;
   }
 }
 
-@media (min-width: 768px) {
-  .header {
-    padding: 16px 24px;
+@media screen and (min-width: 1280px) {
+  .logoText {
+    display: block;
   }
 
-  .link {
-    font-size: 14px;
+  .userName {
+    display: block;
   }
 
-  .avatar {
-    width: 32px;
-    height: 32px;
-    font-size: 14px;
+  .navigation {
+    display: flex;
+  }
+
+  .menu {
+    display: none;
   }
 
   .logoutButton {
-    padding: 10px 20px;
-    font-size: 14px;
+    display: block;
   }
 }

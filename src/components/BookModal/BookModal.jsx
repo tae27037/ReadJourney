@@ -1,5 +1,3 @@
-// src/components/BookModal/BookModal.jsx
-
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./BookModal.module.css";
@@ -26,7 +24,6 @@ const BookModal = ({ book, onClose, onAddToLibrary, isOwnBook = false }) => {
   };
 
   const handleAddClick = async () => {
-    // Закрываем модалку деталей и вызываем обработчик добавления
     onClose();
     if (typeof onAddToLibrary === "function") {
       await onAddToLibrary(book._id);

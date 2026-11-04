@@ -15,7 +15,7 @@
   font-size: 18px;
   line-height: 1;
   letter-spacing: -0.02em;
-  color: #f9f9f9;
+  color: var(--white);
   margin: 0;
 }
 
@@ -29,12 +29,12 @@
   border: none;
   cursor: pointer;
   padding: 0;
-  color: #686868;
+  color: var(--grey);
   transition: color 0.2s ease;
 }
 
 .tabBtn.active {
-  color: #fbfbfb;
+  color: var(--white);
 }
 
 .tabBtn svg {
@@ -42,35 +42,38 @@
 }
 
 .toggle {
-  display: flex; /* Выстраивает кнопки в одну горизонтальную линию */
-  flex-direction: row; /* Горизонтальная ориентация */
+  display: flex;
+  flex-direction: row;
   align-items: center;
-  gap: 8px; /* Расстояние между кнопками */
+  gap: 8px;
 }
+
 .toggleButton {
   background: transparent;
   border: none;
   padding: 0;
   cursor: pointer;
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
   outline: none;
-}
-/* Цвет иконок по умолчанию (неактивный) */
-.icon {
-  fill: transparent;
-  stroke: #686868; /* Серый цвет contour для неактивной иконки */
-  transition:
-    stroke 0.2s ease,
-    fill 0.2s ease;
+  color: var(--grey);
+  transition: color 0.2s ease;
 }
 
-/* Цвет иконки для активной кнопки */
-.toggleButton.active .icon,
-.toggleButton:hover .icon {
-  stroke: #f9f9f9; /* Белый цвет для активной иконки */
+.icon {
+  width: 16px;
+  height: 16px;
+  stroke: currentColor;
+}
+
+.toggleButton.active,
+.toggleButton:hover {
+  color: var(--white);
+}
+
+.desktopQuoteText {
+  display: none;
 }
 
 @media screen and (min-width: 768px) {
@@ -80,5 +83,23 @@
 
   .header {
     margin-bottom: 16px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .header {
+    margin-bottom: 14px;
+  }
+
+  .desktopQuoteText {
+    display: block;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1.28571;
+    letter-spacing: -0.02em;
+    color: var(--grey);
+    margin: 0;
+    padding-top: 6px;
+    padding-bottom: 20px;
   }
 }

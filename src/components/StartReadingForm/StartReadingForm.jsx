@@ -1,5 +1,3 @@
-// src/components/StartReadingForm/StartReadingForm.jsx
-
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { startReading, stopReading } from "../../services/bookApi";
@@ -33,19 +31,16 @@ const StartReadingForm = ({
 
     try {
       if (!isReading) {
-        // Старт чтения
         const updatedBook = await startReading({ id: book._id, page: pageNum });
         toast.success("Reading started!");
         setIsReading(true);
         onUpdateBook?.(updatedBook);
       } else {
-        // Остановка чтения
         const updatedBook = await stopReading({ id: book._id, page: pageNum });
         toast.success("Reading stopped!");
         setIsReading(false);
         onUpdateBook?.(updatedBook);
 
-        // Если книга прочитана полностью
         if (pageNum === book.totalPages) {
           onBookFinished?.();
         }

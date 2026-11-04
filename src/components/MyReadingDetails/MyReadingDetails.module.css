@@ -8,7 +8,7 @@
   font-size: 20px;
   line-height: 1;
   letter-spacing: -0.02em;
-  color: #f9f9f9;
+  color: var(--white);
   margin: 0;
   padding-bottom: 40px;
 }
@@ -27,7 +27,7 @@
   height: 208px;
   overflow: hidden;
   margin-bottom: 10px;
-  background-color: #262626;
+  background-color: var(--field);
 }
 
 .cover {
@@ -37,13 +37,12 @@
 }
 
 .bookTitle {
-  /* width: 146px; */
   font-weight: 700;
   font-size: 14px;
   line-height: 1.28571;
   letter-spacing: -0.02em;
   text-align: center;
-  color: #f9f9f9;
+  color: var(--white);
   margin: 0;
   padding-bottom: 5px;
   width: 146px;
@@ -54,7 +53,7 @@
   font-size: 10px;
   line-height: 1.2;
   letter-spacing: -0.02em;
-  color: #686868;
+  color: var(--grey);
   margin: 0;
   padding-bottom: 20px;
 }
@@ -70,6 +69,7 @@
   border: none;
   cursor: pointer;
   padding: 0;
+  align-items: center;
 }
 
 .stopButton:hover .redCircle {
@@ -79,7 +79,6 @@
 .header {
   display: flex;
   justify-content: space-between;
-  /* align-items: baseline; */
   align-items: start;
 }
 
@@ -88,7 +87,7 @@
   font-size: 12px;
   line-height: 1.33333;
   letter-spacing: -0.02em;
-  color: #686868; /* Серый цвет из макета */
+  color: var(--grey);
   white-space: nowrap;
 }
 
@@ -125,5 +124,13 @@
   .timeLeftText {
     font-size: 14px;
     line-height: 1.28571;
+  }
+}
+@media screen and (min-width: 768px) {
+  .imageWrapper {
+    box-sizing: border-box;
+    width: 224px;
+    height: 340px;
+    margin-bottom: 25px;
   }
 }

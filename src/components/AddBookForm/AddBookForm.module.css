@@ -8,7 +8,7 @@
   font-size: 10px;
   line-height: 1.2;
   letter-spacing: -0.02em;
-  color: #f9f9f9;
+  color: var(--white);
   margin: 0 0 8px 0;
 }
 
@@ -22,7 +22,7 @@
 .inputWrapper {
   display: flex;
   align-items: center;
-  background-color: #262626;
+  background-color: var(--field);
   border-radius: 12px;
   padding: 12px 14px;
   box-sizing: border-box;
@@ -33,7 +33,7 @@
   font-size: 12px;
   line-height: 1.33;
   letter-spacing: -0.02em;
-  color: #686868;
+  color: var(--grey);
   white-space: nowrap;
   margin-right: 8px;
 }
@@ -43,14 +43,14 @@
   background: transparent;
   border: none;
   outline: none;
-  color: #f9f9f9;
+  color: var(--white);
   font-weight: 500;
   font-size: 12px;
   line-height: 1.33;
 }
 
 .input::placeholder {
-  color: #f9f9f9;
+  color: var(--white);
 }
 
 .submitBtn {
@@ -59,7 +59,7 @@
   border: 1px solid rgba(249, 249, 249, 0.2);
   border-radius: 30px;
   background: transparent;
-  color: #f9f9f9;
+  color: var(--white);
   font-weight: 700;
   font-size: 14px;
   line-height: 1.28;
@@ -70,22 +70,25 @@
 }
 
 .submitBtn:hover {
-  border-color: #f9f9f9;
+  background-color: var(--white);
+  color: var(--black);
 }
-/* На планшете (768px+) */
-@media screen and (min-width: 768px) {
+
+@media screen and (min-width: 768px) and (max-width: 1279px) {
   .form {
-    width: 295px; /* Фиксированная ширина блока формы по макету */
+    width: 295px;
     display: flex;
     flex-direction: column;
-    gap: 14px;
   }
 
   .label {
     width: 100%;
-    height: 50px;
-    padding: 16px 14px;
     box-sizing: border-box;
+    padding: 0;
+  }
+
+  .inputGroup {
+    margin-bottom: 38px;
   }
 
   .input {
@@ -97,5 +100,33 @@
     width: 140px;
     height: 42px;
     margin-top: 20px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .inputGroup {
+    margin-bottom: 20px;
+  }
+
+  .label {
+    font-size: 14px;
+  }
+
+  .inputTitle,
+  .input {
+    font-size: 14px;
+    line-height: 1.28571;
+  }
+
+  .inputWrapper {
+    width: 313px;
+    height: 50px;
+  }
+  .submitBtn {
+    box-sizing: border-box;
+    padding: 12px 28px;
+    font-size: 16px;
+    line-height: 1.125;
+    letter-spacing: 0.02em;
   }
 }

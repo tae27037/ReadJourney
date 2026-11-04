@@ -2,7 +2,6 @@ import { useEffect } from "react";
 import styles from "./BookCompletedModal.module.css";
 
 const BookCompletedModal = ({ isOpen, onClose }) => {
-  // Закрытие по клавише ESC
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === "Escape") {
@@ -12,7 +11,7 @@ const BookCompletedModal = ({ isOpen, onClose }) => {
 
     if (isOpen) {
       window.addEventListener("keydown", handleKeyDown);
-      document.body.style.overflow = "hidden"; // Блокируем скролл фона
+      document.body.style.overflow = "hidden";
     }
 
     return () => {
@@ -37,7 +36,6 @@ const BookCompletedModal = ({ isOpen, onClose }) => {
           </svg>
         </button>
 
-        {/* Иконка стопки книг */}
         <div className={styles.thumbWrapper}>
           <span className={styles.bookEmoji} role="img" aria-label="Books">
             📚

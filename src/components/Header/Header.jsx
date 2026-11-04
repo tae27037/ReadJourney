@@ -11,16 +11,10 @@ const Header = () => {
   const navigate = useNavigate();
 
   const user = useSelector((state) => state.auth.user);
-
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const handleMenuToggle = () => {
-    setIsMenuOpen((prev) => !prev);
-  };
-
-  const handleMenuClose = () => {
-    setIsMenuOpen(false);
-  };
+  const handleMenuToggle = () => setIsMenuOpen((prev) => !prev);
+  const handleMenuClose = () => setIsMenuOpen(false);
 
   const handleLogout = async () => {
     try {
@@ -49,6 +43,7 @@ const Header = () => {
           >
             <use href="/img/logo.svg" />
           </svg>
+          <span className={styles.logoText}>READ JOURNEY</span>
         </NavLink>
 
         <nav className={styles.navigation}>
@@ -67,28 +62,33 @@ const Header = () => {
             }
             to="/library"
           >
-            My Library
+            My library
           </NavLink>
         </nav>
 
         <div className={styles.user}>
-          <div className={styles.avatar}>
-            <svg className={styles.avatarIcon} aria-hidden="true">
-              <use href="/sprite.svg#icon-avatar" />
-            </svg>
+          <div className={styles.userInfo}>
+            <div className={styles.avatar}>
+              <svg className={styles.avatarIcon} aria-hidden="true">
+                <use href="/sprite.svg#icon-avatar" />
+              </svg>
 
-            <span className={styles.avatarLetter}>
-              {user?.name?.charAt(0).toUpperCase()}
-            </span>
+              <span className={styles.avatarLetter}>
+                {user?.name?.charAt(0).toUpperCase() || "U"}
+              </span>
+            </div>
+
+            <span className={styles.userName}>{user?.name || "User"}</span>
           </div>
 
           <button
             className={styles.menu}
             type="button"
             onClick={handleMenuToggle}
+            aria-label="Open menu"
           >
             <svg className={styles.menuIcon} aria-hidden="true">
-              <use href="/sprite.svg#icon-menu"></use>
+              <use href="/sprite.svg#icon-menu" />
             </svg>
           </button>
 

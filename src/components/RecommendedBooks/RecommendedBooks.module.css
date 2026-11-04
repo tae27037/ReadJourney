@@ -2,36 +2,31 @@
   box-sizing: border-box;
   padding: 40px 20px;
   border-radius: 30px;
-  /* width: 335px; */
   width: 100%;
   height: 100%;
-  background: #1f1f1f;
+  background: var(--background);
   margin-top: 10px;
 }
 
 .header {
   display: flex;
-  /* align-items: center; */
+
   justify-content: space-between;
   margin-bottom: 20px;
-  /* padding-bottom: 22; */
 }
 
 .title {
   font-weight: 700;
   font-size: 20px;
-
-  /* line-height: 20px; */
   line-height: 1;
   letter-spacing: -0.02em;
-  color: #f9f9f9;
+  color: var(--white);
   margin: 0;
 }
 .pagination {
   display: flex;
   align-items: flex-start;
   gap: 8px;
-  /* margin-top: 20px; */
 }
 .paginationButton {
   display: flex;
@@ -42,7 +37,7 @@
   border-radius: 50%;
   border: 1px solid rgba(249, 249, 249, 0.3);
   background: transparent;
-  color: #ffffff;
+  color: var(--white);
   cursor: pointer;
   transition:
     background-color 0.2s ease,
@@ -64,17 +59,15 @@
   height: 10px;
   fill: none;
   stroke: currentColor;
-  transform: rotate(
-    180deg
-  ); /* если базовая иконка стрелки указывает вправо, для "prev" разворачиваем влево */
+  transform: rotate(180deg);
 }
 
 .arrowRight {
-  transform: rotate(0deg); /* для "next" оставляем как есть */
+  transform: rotate(0deg);
 }
 
 .page {
-  display: none; /* на макете текста "1/5" нет — скрываем; уберите display:none, если хотите его показывать */
+  display: none;
 }
 
 .list {
@@ -95,7 +88,7 @@
 .image {
   width: 100%;
 
-  aspect-ratio: 3 / 4.4; /* подберите под реальные пропорции обложек */
+  aspect-ratio: 3 / 4.4;
   object-fit: cover;
   border-radius: 12px;
   display: block;
@@ -106,7 +99,7 @@
   font-size: 14px;
   line-height: 1.28571;
   letter-spacing: -0.02em;
-  color: #f9f9f9;
+  color: var(--white);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -124,7 +117,7 @@
   font-size: 10px;
   line-height: 1.2;
   letter-spacing: -0.02em;
-  color: #686868;
+  color: var(--grey);
   margin: 0;
 }
 
@@ -142,25 +135,23 @@
   cursor: pointer;
   border: 1px solid rgba(249, 249, 249, 0.2);
   border-radius: 30px;
-  color: #f9f9f9;
+  color: var(--white);
   background-color: transparent;
   font-weight: 700;
   font-size: 14px;
   white-space: nowrap;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 768px) and (max-width: 1279px) {
   .section {
+    box-sizing: border-box;
     padding: 40px;
+    min-width: 704px;
   }
 
   .list {
-    grid-template-columns: repeat(4, 1fr); /* 4 равные колонки */
+    grid-template-columns: repeat(4, 1fr);
     gap: 27px 25px;
-  }
-
-  .section {
-    width: 704px;
   }
 
   .title {
@@ -189,11 +180,22 @@
   }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1280px) {
   .list {
-    grid-template-columns: repeat(
-      5,
-      1fr
-    ); /* под 10 книг на десктопе, 2 ряда по 5 */
+    grid-template-columns: repeat(5, 1fr);
+    gap: 27px 20px;
+  }
+
+  .section {
+    box-sizing: border-box;
+    padding: 40px 40px 28px 40px;
+    min-width: 847px;
+    min-height: 651px;
+    margin: 0;
+  }
+
+  .image {
+    width: 137px;
+    height: 208px;
   }
 }

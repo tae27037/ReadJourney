@@ -7,24 +7,35 @@
 
 .detailsContainer {
   box-sizing: border-box;
-  flex-grow: 1; /* Занимает всё оставшееся место справа */
-  background-color: #1f1f1f;
+  flex-grow: 1;
+  background-color: var(--background);
   border-radius: 30px;
   padding: 40px 20px;
   width: 100%;
-  height: 100%; /* Примерная высота под макет */
+  height: 100%;
 }
 
 .loading,
 .error {
-  color: #fbfbfb;
+  color: var(--white);
   text-align: center;
   padding: 100px 0;
   font-size: 18px;
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 768px) and (max-width: 1280px) {
   .detailsContainer {
     padding: 40px;
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .page {
+    flex-direction: row;
+    gap: 16px;
+  }
+
+  .detailsContainer {
+    height: 651px;
   }
 }

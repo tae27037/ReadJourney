@@ -22,7 +22,6 @@ const toTitleCase = (str) =>
     ? str.toLowerCase().replace(/(^|\s)\S/g, (letter) => letter.toUpperCase())
     : "";
 
-// 1. ПРИНИМАЕМ onBookAdded В ПРОПСЫ
 const RecommendedBooks = ({
   filters,
   page,
@@ -50,9 +49,8 @@ const RecommendedBooks = ({
   const handleAddToLibrary = async (bookId) => {
     try {
       await addBookToLibrary(bookId);
-      setSelectedBook(null); // Закрываем карточку с описанием
+      setSelectedBook(null);
 
-      // 2. ВЫЗЫВАЕМ КОЛБЭК ДЛЯ ОТКРЫТИЯ МОДАЛКИ "Good job" 👍
       if (typeof onBookAdded === "function") {
         onBookAdded();
       }
@@ -82,40 +80,38 @@ const RecommendedBooks = ({
     };
   }, [setPage]);
 
-useEffect(() => {
-  const fetchBooks = async () => {
-    try {
-      setIsLoading(true);
-      setError(null);
+  useEffect(() => {
+    const fetchBooks = async () => {
+      try {
+        setIsLoading(true);
+        setError(null);
 
-      // 1. Получаем точное актуальное значение perPage
-      const currentPerPage = getBooksPerPage();
+        const currentPerPage = getBooksPerPage();
 
-      const data = await getRecommendedBooks({
-        page,
-        perPage: currentPerPage, // <--- Отправляем 8 для планшета напрямую
-        title: filters?.title,
-        author: filters?.author,
-      });
+        const data = await getRecommendedBooks({
+          page,
+          perPage: currentPerPage,
+          title: filters?.title,
+          author: filters?.author,
+        });
 
-      // 2. НЕ делаем .slice(0, perPage), если сервер уже вернул нужный массив
-      setBooks(data.results || []);
+        setBooks(data.results || []);
 
-      const calculatedTotalPages =
-        data.totalPages ||
-        Math.ceil((data.total || data.results?.length || 0) / currentPerPage);
+        const calculatedTotalPages =
+          data.totalPages ||
+          Math.ceil((data.total || data.results?.length || 0) / currentPerPage);
 
-      setTotalPages(calculatedTotalPages);
-    } catch (error) {
-      console.error("Failed to fetch recommended books:", error);
-      setError("Failed to load recommended books");
-    } finally {
-      setIsLoading(false);
-    }
-  };
+        setTotalPages(calculatedTotalPages);
+      } catch (error) {
+        console.error("Failed to fetch recommended books:", error);
+        setError("Failed to load recommended books");
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-  fetchBooks();
-}, [page, perPage, filters]);
+    fetchBooks();
+  }, [page, perPage, filters]);
   const handlePrevPage = () => {
     setPage((prevPage) => prevPage - 1);
   };

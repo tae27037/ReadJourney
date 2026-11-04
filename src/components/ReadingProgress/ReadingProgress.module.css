@@ -1,15 +1,9 @@
-/* .container {
-  background-color: #262626;
-  border-radius: 12px;
-  padding: 20px;
-} */
-
 .title {
   font-weight: 700;
   font-size: 18px;
   line-height: 1;
   letter-spacing: -0.02em;
-  color: #f9f9f9;
+  color: var(--white);
   margin: 0;
   padding-bottom: 14px;
 }
@@ -19,7 +13,7 @@
   font-size: 14px;
   line-height: 1.28571;
   letter-spacing: -0.02em;
-  color: #686868;
+  color: var(--grey);
   margin: 0;
   padding-bottom: 20px;
 }
@@ -28,7 +22,7 @@
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  background-color: #262626;
+  background-color: var(--field);
   display: flex;
   align-items: center;
   justify-content: center;

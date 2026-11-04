@@ -1,4 +1,3 @@
-/* Statistics.module.css */
 .container {
   display: flex;
   flex-direction: column;
@@ -6,7 +5,7 @@
   justify-content: center;
 
   margin: 0 auto;
-  background: #262626;
+  background: var(--field);
   border-radius: 12px;
   width: 295px;
   height: 211px;
@@ -21,34 +20,30 @@
   height: 116px;
 }
 
-/* Иконка из спрайта */
 .statisticsIcon {
   width: 116px;
   height: 116px;
   display: block;
 }
 
-/* Накладываем зеленый слой точно поверх иконки */
 .progressOverlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 116px;
   height: 116px;
-  transform: rotate(-90deg); /* Разворачиваем, чтобы отсчет шел с 12 часов */
+  transform: rotate(-90deg);
   pointer-events: none;
 }
 
-/* Зеленая дуга прогресса */
 .progressCircle {
   fill: none;
-  stroke: #30b448; /* Зеленый цвет заполнения */
-  stroke-width: 8; /* Толщина кольца */
+  stroke: var(--green);
+  stroke-width: 8;
   stroke-linecap: round;
   transition: stroke-dashoffset 0.3s ease;
 }
 
-/* Текст 100% по центру */
 .innerCircle {
   position: absolute;
   display: flex;
@@ -62,7 +57,7 @@
 
   line-height: 1.11111;
   letter-spacing: -0.02em;
-  color: #f9f9f9;
+  color: var(--white);
 }
 
 .pagesText {
@@ -70,7 +65,7 @@
   font-size: 14px;
   line-height: 1.28571;
   letter-spacing: -0.02em;
-  color: #f9f9f9;
+  color: var(--white);
   margin: 0;
   padding-bottom: 4px;
   padding-top: 21px;
@@ -82,10 +77,9 @@
   line-height: 1.2;
   letter-spacing: -0.02em;
   text-align: center;
-  color: #686868;
+  color: var(--grey);
   margin: 0;
 }
-/* Statistics.module.css */
 
 .infoBlock {
   display: flex;
@@ -93,12 +87,11 @@
   gap: 15px;
 }
 
-/* Зеленый квадрат со скругленными углами */
 .greenSquare {
   width: 14px;
   height: 14px;
-  background-color: #30b448;
-  border-radius: 4px; /* Скругление углов как на макете */
+  background-color: var(--green);
+  border-radius: 4px;
   margin-top: 21px;
   flex-shrink: 0;
 }
@@ -114,7 +107,7 @@
   font-size: 14px;
   line-height: 1.28;
   letter-spacing: -0.02em;
-  color: #f9f9f9;
+  color: var(--white);
   margin: 0;
 }
 
@@ -123,10 +116,10 @@
   font-size: 10px;
   line-height: 1.2;
   letter-spacing: -0.02em;
-  color: #686868;
+  color: var(--grey);
   margin: 0;
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 768px) and (max-width: 1279px) {
   .container {
     width: 321px;
     height: 252px;
@@ -158,5 +151,11 @@
     font-size: 20px;
 
     line-height: 1;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .container {
+    width: 313px;
+    height: 281px;
   }
 }

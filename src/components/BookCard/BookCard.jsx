@@ -25,7 +25,6 @@
 
 import styles from "./BookCard.module.css";
 
-// Функция приведения к единому формату: "GALYA WITHOUT..." -> "Galya Without..."
 const formatTitle = (str) => {
   if (!str) return "";
   return str
@@ -41,7 +40,6 @@ const BookCard = ({ book, onClick, onDelete }) => {
       <img src={book.imageUrl} alt={book.title} className={styles.cover} />
       <div className={styles.infoWrapper}>
         <div className={styles.textGroup}>
-          {/* Форматируем название */}
           <h3 className={styles.title}>{formatTitle(book.title)}</h3>
           <p className={styles.author}>{book.author}</p>
         </div>

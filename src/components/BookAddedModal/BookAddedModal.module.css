@@ -1,4 +1,3 @@
-/* Оверлей (затемнення та розмиття фону) */
 .backdrop {
   position: fixed;
   top: 0;
@@ -13,11 +12,10 @@
   padding: 20px;
 }
 
-/* Карточка модалки */
 .modal {
   position: relative;
   box-sizing: border-box;
-  background: #1f1f1f;
+  background: var(--background);
   border: 1px solid rgba(104, 104, 104, 0.2);
   border-radius: 12px;
   width: 335px;
@@ -28,7 +26,6 @@
   text-align: center;
 }
 
-/* Хрестик закриття */
 .closeButton {
   position: absolute;
   top: 16px;
@@ -36,7 +33,7 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  color: #f9f9f9;
+  color: var(--white);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -45,7 +42,7 @@
 }
 
 .closeButton:hover {
-  color: #30b448;
+  color: var(--green);
 }
 
 .closeIcon {
@@ -53,7 +50,6 @@
   fill: none;
 }
 
-/* Емодзі 👍 */
 .thumbWrapper {
   margin-bottom: 20px;
 }
@@ -65,32 +61,29 @@
   display: block;
 }
 
-/* Заголовок */
 .title {
   font-weight: 700;
   font-size: 18px;
   line-height: 1;
   letter-spacing: -0.02em;
   text-align: center;
-  color: #f9f9f9;
+  color: var(--white);
   margin: 0;
   padding-bottom: 10px;
 }
 
-/* Опис */
 .description {
   font-weight: 500;
   font-size: 14px;
   line-height: 1.28571;
   letter-spacing: -0.02em;
   text-align: center;
-  color: #686868;
+  color: var(--grey);
   margin: 0;
 }
 
-/* Біле виділення в описі */
 .highlight {
-  color: #f9f9f9;
+  color: var(--white);
 }
 
 @media screen and (min-width: 768px) {

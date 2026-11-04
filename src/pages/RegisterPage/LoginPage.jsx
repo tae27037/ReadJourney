@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"; // <--- Добавили импорт Link
+import { Link } from "react-router-dom";
 import LoginForm from "../../components/AuthModal/LoginForm";
 import styles from "./RegisterPage.module.css";
 
@@ -6,7 +6,6 @@ const LoginPage = () => {
   return (
     <main className={styles.page}>
       <div className={styles.firstCard}>
-        {/* Логотип + название в одной ссылке */}
         <Link to="/" className={styles.logo}>
           <svg
             className={styles.logoIcon}
@@ -19,7 +18,6 @@ const LoginPage = () => {
           <span className={styles.logoText}>READ JOURNEY</span>{" "}
         </Link>
 
-        {/* Заголовок и форма вынесены на уровень карточки */}
         <h1 className={styles.title}>
           Expand your mind, reading{" "}
           <span className={styles.titleMuted}>a book</span>
@@ -32,7 +30,7 @@ const LoginPage = () => {
         <div className={styles.phoneMockup}>
           <img
             className={styles.phoneImage}
-            src="/public/img/iPhone.svg"
+            src="/public/img/iPhone-desktop.svg"
             alt="Read Journey app preview"
           />
         </div>

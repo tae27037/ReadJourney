@@ -13,11 +13,9 @@ const AddBookForm = ({ onAddBook }) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  // 1. Делаем обработчик асинхронным
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Валидация полей
     if (
       !formData.title.trim() ||
       !formData.author.trim() ||
@@ -33,14 +31,12 @@ const AddBookForm = ({ onAddBook }) => {
     }
 
     try {
-      // 2. Ждем, пока книга реально добавится на сервер через API
       await onAddBook({
         title: formData.title,
         author: formData.author,
         totalPages: Number(formData.totalPages),
       });
 
-      // 3. Очищаем форму ТОЛЬКО после успешного добавления
       setFormData({ title: "", author: "", totalPages: "" });
     } catch (error) {
       console.error("Error inside form submit:", error);

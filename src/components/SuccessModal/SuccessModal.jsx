@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import styles from "./SuccessModal.module.css"; // или используй стили из BookModal
+import styles from "./SuccessModal.module.css";
 
 const SuccessModal = ({ onClose }) => {
   useEffect(() => {

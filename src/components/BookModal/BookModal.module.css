@@ -13,7 +13,7 @@
   position: relative;
   width: 100%;
   max-width: 335px;
-  background: #1f1f1f;
+  background: var(--background);
   border-radius: 12px;
   padding: 16px 16px 40px 16px;
   box-sizing: border-box;
@@ -53,7 +53,7 @@
   padding-bottom: 2px;
   line-height: 1.2;
   letter-spacing: -0.02em;
-  color: #f9f9f9;
+  color: var(--white);
   text-align: center;
 }
 
@@ -62,7 +62,7 @@
   font-size: 12px;
   line-height: 1.16667;
   letter-spacing: -0.02em;
-  color: #686868;
+  color: var(--grey);
   margin: 0;
   padding-bottom: 4px;
   text-align: center;
@@ -74,7 +74,7 @@
   line-height: 1.2;
   letter-spacing: -0.02em;
   text-align: center;
-  color: #f9f9f9;
+  color: var(--white);
   margin: 0;
   padding-bottom: 20px;
 }
@@ -91,20 +91,20 @@
   font-size: 14px;
   line-height: 1.28571;
   letter-spacing: 0.02em;
-  color: #f9f9f9;
+  color: var(--white);
   cursor: pointer;
   white-space: nowrap;
 }
 
 .addButton:hover {
-  background: #e0e0e0;
+  background: var(--white);
+  color: var(--black);
 }
 
 @media (min-width: 768px) {
   .modal {
     max-width: 500px;
     padding-bottom: 50px;
-    /* height: 100%; */
   }
 
   .image {

@@ -1,46 +1,39 @@
-/* Diary.module.css */
-
 .list {
   box-sizing: border-box;
   list-style: none;
   padding: 17px;
-  /* padding-right: 7px; */
   margin: 0;
   display: flex;
   flex-direction: column;
   gap: 20px;
   width: 295px;
-  /* height: 211px; */
   overflow-y: auto;
   border-radius: 12px;
-  background: #262626;
-  position: relative; /* Обязательно для точного позиционирования линии */
+  background: var(--field);
+  position: relative;
 }
 
-/* Единая вертикальная линия хронологии */
-.list::before {
-  content: "";
-  position: absolute;
-  /* padding (17px) + отступ к центру иконки (8px) - половина ширины линии (1px) = 24px */
-  left: 24px;
-  top: 25px; /* Начинается ровно в центре первого квадрата */
-  bottom: 0; /* Заканчивается ровно в центре последнего квадрата */
-  width: 2px;
-  background-color: #1f1f1f;
-  z-index: 1;
-}
-
-/* Каждый элемент списка */
 .item {
   position: relative;
-  padding-left: 28px; /* Отступ под иконку и линию */
+  padding-left: 28px;
 }
 
 .item::before {
-  display: none;
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 16px;
+  height: calc(100% - 16px + 20px);
+  width: 2px;
+  background-color: var(--background);
+  z-index: 1;
 }
 
-/* Иконка-квадрат (позиционируется поверх линии) */
+.item:last-child::before {
+  top: 16px;
+  height: calc(100% - 16px + 17px);
+}
+
 .squareIcon {
   position: absolute;
   left: 0;
@@ -49,11 +42,10 @@
   height: 16px;
   min-width: 16px;
   min-height: 16px;
-  box-sizing: border-box;
-  z-index: 2; /* Закрывает линию собой */
+  z-index: 2;
+  background-color: var(--field);
 }
 
-/* Шапка карточки */
 .itemHeader {
   display: flex;
   justify-content: space-between;
@@ -71,7 +63,7 @@
   font-size: 12px;
   line-height: 1.33;
   letter-spacing: 0.02em;
-  color: #f9f9f9;
+  color: var(--white);
 }
 
 .pagesCount {
@@ -79,13 +71,12 @@
   font-size: 12px;
   line-height: 1.33;
   letter-spacing: -0.02em;
-  color: #686868;
-  width: 70px; /* Фиксированная ширина, как у блока скорости */
-  text-align: center; /* Центрирует текст точно над графиком */
-  margin-right: 16px; /* Сдвиг с учетом иконки удаления справа */
+  color: var(--grey);
+  width: 70px;
+  text-align: center;
+  margin-right: 16px;
 }
 
-/* Тело карточки */
 .itemBody {
   display: flex;
   justify-content: space-between;
@@ -102,7 +93,7 @@
   font-size: 14px;
   line-height: 1.28;
   letter-spacing: -0.02em;
-  color: #f9f9f9;
+  color: var(--white);
   padding-bottom: 4px;
 }
 
@@ -111,10 +102,9 @@
   font-size: 10px;
   line-height: 1.2;
   letter-spacing: -0.02em;
-  color: #686868;
+  color: var(--grey);
 }
 
-/* Правая секция (скорость и кнопка удаления) */
 .rightSection {
   display: flex;
   align-items: flex-start;
@@ -135,7 +125,7 @@
   line-height: 1.2;
   letter-spacing: -0.02em;
   text-align: right;
-  color: #686868;
+  color: var(--grey);
   margin: 0;
   padding-top: 4px;
   white-space: nowrap;
@@ -147,12 +137,11 @@
   margin: 0;
 }
 
-/* Кнопка удаления */
 .deleteButton {
   background: transparent;
   border: none;
   cursor: pointer;
-  color: #686868;
+  color: var(--grey);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -161,7 +150,7 @@
 }
 
 .deleteButton:hover {
-  color: #e85050;
+  color: var(--red);
 }
 
 .trashIcon {
@@ -169,22 +158,20 @@
 }
 
 .emptyText {
-  color: #686868;
+  color: var(--grey);
   font-size: 14px;
   text-align: center;
   padding: 20px 0;
 }
 
-/* Старые (предыдущие) сеансы — СЕРЫЙ */
-
 @media screen and (min-width: 768px) {
-  .list {
+  /* .list {
     box-sizing: border-box;
     padding: 16px 16px 31px 16px;
     gap: 14px;
     width: 321px;
     height: 252px;
-  }
+  } */
 
   .itemHeader {
     margin-bottom: 16px;
@@ -198,7 +185,6 @@
   .percentage {
     font-size: 20px;
     line-height: 1;
-
     padding-bottom: 8px;
   }
 
@@ -220,8 +206,56 @@
     width: 60px;
     height: 25px;
   }
+
+  .list {
+    padding: 20px 20px 28px 20px;
+    gap: 14px;
+    width: 321px;
+    height: 252px;
+  }
+
   .squareIcon {
     width: 20px;
     height: 20px;
+  }
+
+  .item::before {
+    left: 9px;
+    top: 20px;
+    height: calc(100% - 20px + 14px);
+  }
+
+  .item:last-child::before {
+    top: 20px;
+    height: calc(100% - 20px + 28px);
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .list {
+    height: 373px;
+    width: 313px;
+    gap: 40px;
+  }
+
+  .item::before {
+    top: 20px;
+    height: calc(100% - 20px + 40px);
+  }
+
+  .item:last-child::before {
+    top: 20px;
+    height: calc(100% - 20px + 28px);
+  }
+
+  .list {
+    height: 373px;
+    width: 313px;
+
+    gap: 40px;
+  }
+
+  .itemHeader {
+    margin-bottom: 20px;
   }
 }

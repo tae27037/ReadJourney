@@ -1,5 +1,3 @@
-// src/components/Statistics/Statistics.jsx
-
 import styles from "./Statistics.module.css";
 
 const Statistics = ({ book }) => {
@@ -17,9 +15,8 @@ const Statistics = ({ book }) => {
     Number(((totalReadPages / totalPages) * 100).toFixed(2)),
   );
 
-  // Подкорректированный радиус под тонкую обводку
   const radius = 53;
-  const circumference = 2 * Math.PI * radius; // ≈ 314.16
+  const circumference = 2 * Math.PI * radius;
   const strokeDashoffset = circumference - (percentage / 100) * circumference;
 
   return (
@@ -30,18 +27,13 @@ const Statistics = ({ book }) => {
             <use href="/sprite.svg#icon-statistics" />
           </svg>
 
-          <svg
-            className={styles.progressOverlay}
-            // width="116"
-            // height="116"
-            // viewBox="0 0 116 116"
-          >
+          <svg className={styles.progressOverlay}>
             <circle
               className={styles.progressCircle}
               cx="58"
               cy="58"
               r={radius}
-              strokeLinecap="round" /* или "butt" если края вылезают */
+              strokeLinecap="round"
               style={{
                 strokeDasharray: circumference,
                 strokeDashoffset: strokeDashoffset,
