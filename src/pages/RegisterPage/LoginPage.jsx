@@ -13,7 +13,7 @@ const LoginPage = () => {
             height="17"
             aria-hidden="true"
           >
-            <use href="/public/img/logo.svg" />
+            <use href="/img/logo.svg" />
           </svg>
           <span className={styles.logoText}>READ JOURNEY</span>{" "}
         </Link>
@@ -30,7 +30,7 @@ const LoginPage = () => {
         <div className={styles.phoneMockup}>
           <img
             className={styles.phoneImage}
-            src="/public/img/iPhone-desktop.svg"
+            src="/img/iPhone-desktop.svg"
             alt="Read Journey app preview"
           />
         </div>
