@@ -15,6 +15,7 @@ import MyLibraryBooks from "../../components/MyLibraryBooks/MyLibraryBooks";
 import BookCard from "../../components/BookCard/BookCard";
 import BookModal from "../../components/BookModal/BookModal";
 import BookAddedModal from "../../components/BookAddedModal/BookAddedModal";
+import Container from "../../components/Container/Container";
 
 import styles from "./LibraryPage.module.css";
 
@@ -38,7 +39,7 @@ const LibraryPage = () => {
       setError(null);
       try {
         const data = await getOwnBooks();
-        if (isMounted) setBooks(data);
+        if (isMounted) setBooks(Array.isArray(data) ? data : []);
       } catch (err) {
         console.error("Failed to fetch library books:", err);
         if (isMounted) setError("Failed to load your library");
@@ -80,7 +81,7 @@ const LibraryPage = () => {
       setIsLoading(true);
       setError(null);
       const data = await getOwnBooks();
-      setBooks(data);
+      setBooks(Array.isArray(data) ? data : []);
     } catch (err) {
       console.error("Failed to fetch library books:", err);
       setError("Failed to load your library");
@@ -99,7 +100,7 @@ const LibraryPage = () => {
     );
 
     if (isAlreadyInLibrary) {
-      setIsBookAddedModalOpen(true);
+      alert("This book is already in your library");
       return;
     }
 
@@ -109,7 +110,7 @@ const LibraryPage = () => {
       setIsBookAddedModalOpen(true);
     } catch (err) {
       if (err.response?.status === 409) {
-        setIsBookAddedModalOpen(true);
+        alert("This book is already in your library");
       } else {
         alert(
           "Error adding book: " + (err.response?.data?.message || err.message),
@@ -119,19 +120,28 @@ const LibraryPage = () => {
   };
 
   const handleAddRecommendedToLibrary = async (bookId) => {
-    const isAlreadyInLibrary = books.some(
-      (b) =>
-        b._id === bookId ||
-        (selectedBook &&
-          b.title?.trim().toLowerCase() ===
-            selectedBook.title?.trim().toLowerCase() &&
-          b.author?.trim().toLowerCase() ===
-            selectedBook.author?.trim().toLowerCase()),
-    );
+    // 1. Ищем выбранную книгу для сверки параметров
+    const targetBook =
+      selectedBook || recommended.find((b) => b._id === bookId);
+
+    // 2. Строгая проверка дубликата (по _id ИЛИ по совпадению Title + Author)
+    const isAlreadyInLibrary = books.some((b) => {
+      if (b._id === bookId) return true;
+      if (
+        targetBook &&
+        b.title?.trim().toLowerCase() ===
+          targetBook.title?.trim().toLowerCase() &&
+        b.author?.trim().toLowerCase() ===
+          targetBook.author?.trim().toLowerCase()
+      ) {
+        return true;
+      }
+      return false;
+    });
 
     if (isAlreadyInLibrary) {
       setSelectedBook(null);
-      setIsBookAddedModalOpen(true);
+      alert("This book is already in your library");
       return;
     }
 
@@ -141,9 +151,9 @@ const LibraryPage = () => {
       await refreshBooks();
       setIsBookAddedModalOpen(true);
     } catch (err) {
+      setSelectedBook(null);
       if (err.response?.status === 409) {
-        setSelectedBook(null);
-        setIsBookAddedModalOpen(true);
+        alert("This book is already in your library");
       } else {
         console.error("Failed to add recommended book:", err);
         alert("Failed to add book to library");
@@ -171,73 +181,87 @@ const LibraryPage = () => {
     setIsOwnBookModal(true);
   };
 
-  const filteredBooks = books.filter((book) => {
+  const uniqueBooks = books.filter(
+    (book, index, self) =>
+      index ===
+      self.findIndex(
+        (b) =>
+          b._id === book._id ||
+          (b.title?.trim().toLowerCase() === book.title?.trim().toLowerCase() &&
+            b.author?.trim().toLowerCase() ===
+              book.author?.trim().toLowerCase()),
+      ),
+  );
+
+  const filteredBooks = uniqueBooks.filter((book) => {
     if (statusFilter === "all") return true;
     return book.status === statusFilter;
   });
 
   return (
-    <div className={styles.page}>
-      <Dashboard showWorkout={false} showQuote={false}>
-        <AddBookForm onAddBook={handleAddBook} />
+    <Container>
+      <div className={styles.page}>
+        <Dashboard showWorkout={false} showQuote={false}>
+          <AddBookForm onAddBook={handleAddBook} />
 
-        <div className={styles.recommendedBlock}>
-          <h2 className={styles.title}>Recommended books</h2>
+          <div className={styles.recommendedBlock}>
+            <h2 className={styles.title}>Recommended books</h2>
 
-          <ul className={styles.recommendedList}>
-            {recommended.map((book) => (
-              <li key={book._id} className={styles.recommendedItem}>
-                <BookCard
-                  book={book}
-                  onClick={() => handleRecommendedClick(book)}
-                />
-              </li>
-            ))}
-          </ul>
+            <ul className={styles.recommendedList}>
+              {recommended.map((book) => (
+                <li key={book._id} className={styles.recommendedItem}>
+                  <BookCard
+                    book={book}
+                    onClick={() => handleRecommendedClick(book)}
+                  />
+                </li>
+              ))}
+            </ul>
 
-          <Link className={styles.homeLink} to="/recommended">
-            Home{" "}
-            <span aria-hidden="true">
-              <svg
-                className={styles.logInIcon}
-                width="24"
-                height="24"
-                aria-hidden="true"
-              >
-                <use href="/sprite.svg#icon-log-in" />
-              </svg>
-            </span>
-          </Link>
+            <Link className={styles.homeLink} to="/recommended">
+              Home{" "}
+              <span aria-hidden="true">
+                <svg
+                  className={styles.logInIcon}
+                  width="24"
+                  height="24"
+                  aria-hidden="true"
+                >
+                  <use href="/sprite.svg#icon-log-in" />
+                </svg>
+              </span>
+            </Link>
+          </div>
+        </Dashboard>
+
+        <div className={styles.libraryContainer}>
+          <MyLibraryBooks
+            books={filteredBooks}
+            statusFilter={statusFilter}
+            onFilterChange={setStatusFilter}
+            onDeleteBook={handleDeleteBook}
+            onBookClick={handleOwnBookClick}
+            isLoading={isLoading}
+            error={error}
+          />
         </div>
-      </Dashboard>
 
-      <div className={styles.libraryContainer}>
-        <MyLibraryBooks
-          books={filteredBooks}
-          statusFilter={statusFilter}
-          onFilterChange={setStatusFilter}
-          onDeleteBook={handleDeleteBook}
-          onBookClick={handleOwnBookClick}
-          isLoading={isLoading}
-          error={error}
+        {selectedBook && (
+          <BookModal
+            book={selectedBook}
+            isOwnBook={isOwnBookModal}
+            userBooks={books}
+            onClose={() => setSelectedBook(null)}
+            onAddToLibrary={handleAddRecommendedToLibrary}
+          />
+        )}
+
+        <BookAddedModal
+          isOpen={isBookAddedModalOpen}
+          onClose={() => setIsBookAddedModalOpen(false)}
         />
       </div>
-
-      {selectedBook && (
-        <BookModal
-          book={selectedBook}
-          isOwnBook={isOwnBookModal}
-          userBooks={books}
-          onClose={() => setSelectedBook(null)}
-          onAddToLibrary={handleAddRecommendedToLibrary}
-        />
-      )}
-
-      <BookAddedModal
-        isOpen={isBookAddedModalOpen}
-        onClose={() => setIsBookAddedModalOpen(false)}
-      />
-    </div>
+    </Container>
   );
 };
 

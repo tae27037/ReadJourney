@@ -1,0 +1,22 @@
+.container {
+  width: 100%;
+  max-width: 1280px; /* Либо 1440px / 1216px в зависимости от вашего макета Figma */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .container {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}

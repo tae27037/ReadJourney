@@ -1,5 +1,6 @@
 .card {
   width: 100%;
+  /* width: 137px; */
   display: flex;
   flex-direction: column;
   cursor: pointer;

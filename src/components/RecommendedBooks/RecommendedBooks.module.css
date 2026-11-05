@@ -106,6 +106,7 @@
   margin: 0;
   padding-top: 8px;
   text-transform: lowercase;
+  max-width: 137px;
 }
 
 .bookTitle::first-letter {
