@@ -2,9 +2,6 @@
 
 ReadJourney is a responsive web application for readers: discover recommended books, build your personal library, track your reading progress and review your reading statistics.
 
-
----
-
 ## ✨ Features
 
 ### Unauthorized user
