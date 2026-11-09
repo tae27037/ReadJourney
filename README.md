@@ -107,7 +107,6 @@ The layout is adaptive (except the mobile layout, which is fluid/adaptive as not
 
 - **React**
 - **react-hook-form** + **Yup** — form handling and validation
-- _Add the rest of your stack (router, state management, HTTP client, UI/chart libraries, etc.)_
 
 ---
 
@@ -128,25 +127,6 @@ npm run dev
 npm run build
 ```
 
-> Adjust the commands above to match your toolchain (Vite / CRA / etc.).
-
 ---
 
-## 📂 Project Structure
 
-```
-src/
-├── components/     # Reusable UI components (Header, Dashboard, Filters, ...)
-├── pages/          # Register, Login, Recommended, MyLibrary, Reading
-├── redux/          # State management (if used)
-├── assets/         # Images, icons sprite, fonts
-└── App.jsx
-```
-
-_Update this section to reflect the actual structure._
-
----
-
-## 👤 Author
-
-_Your name_ — [GitHub](https://github.com/your-username)
