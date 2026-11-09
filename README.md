@@ -2,9 +2,6 @@
 
 ReadJourney is a responsive web application for readers: discover recommended books, build your personal library, track your reading progress and review your reading statistics.
 
-- **Design (Figma):** [BOOKS-READING](https://www.figma.com/file/z3m0rdBcEfLTJUBDkAKhWQ/BOOKS-READING?type=design&node-id=18743%3A4973&mode=design&t=Hi1KTaUJMogWXZzz-1)
-- **Backend API docs:** [readjourney.b.goit.study/api-docs](https://readjourney.b.goit.study/api-docs/)
-- **Live demo:** _add link here_
 
 ---
 
